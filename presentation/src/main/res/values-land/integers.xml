@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="grid_layout_span_count">4</integer>
+
+    <!--Detail-->
+    <integer name="detail_person_bio_max_lines">4</integer>
+    <integer name="detail_movie_overview_max_lines">5</integer>
+    <integer name="detail_tv_show_overview_max_lines">5</integer>
+
+</resources>

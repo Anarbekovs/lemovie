@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 27
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':domain')
+
+    //support
+    implementation "com.android.support:appcompat-v7:$SUPPORT_VER"
+
+    //retrofit2
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VER"
+    implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VER"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VER"
+    implementation "com.google.code.gson:gson:$GSON_VER"
+
+    //okhttp3
+    implementation "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VER"
+    implementation "com.squareup.okhttp3:okhttp:$OKHTTP_VER"
+
+    //rxJava2
+    implementation "io.reactivex.rxjava2:rxjava:$RXJAVA_VER"
+    implementation "io.reactivex.rxjava2:rxandroid:$RXANDROID_VER"
+
+    //dagger2
+    implementation "com.google.dagger:dagger:$DAGGER_VER"
+    annotationProcessor "com.google.dagger:dagger-compiler:$DAGGER_VER"
+
+    //room
+    implementation "android.arch.persistence.room:runtime:$ROOM_VER"
+    implementation "android.arch.persistence.room:rxjava2:$ROOM_VER"
+    annotationProcessor "android.arch.persistence.room:compiler:$ROOM_VER"
+
+    //test
+    testImplementation "junit:junit:$JUNIT_VER"
+    testImplementation "android.arch.persistence.room:testing:$ROOM_VER"
+    androidTestImplementation "com.android.support.test:runner:$RUNNER_VER"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$ESPRESSO_VER"
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/credit_movie_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    card_view:cardBackgroundColor="@android:color/transparent"
+    card_view:cardElevation="@dimen/item_card_elevation">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:maxWidth="@dimen/item_credit_max_width"
+        android:minWidth="@dimen/item_credit_min_width">
+
+        <ImageView
+            android:id="@+id/credit_movie_poster"
+            android:layout_width="@dimen/item_main_image_width"
+            android:layout_height="@dimen/item_main_image_height"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/movie_poster_desc" />
+
+        <TextView
+            android:id="@+id/credit_movie_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/credit_movie_poster"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_half"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:maxLines="@integer/item_credit_title_max_lines"
+            android:maxWidth="@dimen/item_credit_max_title_width"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/color_main_text" />
+
+        <TextView
+            android:id="@+id/credit_movie_character"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/credit_movie_title"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:maxLines="@integer/item_credit_character_max_lines"
+            android:maxWidth="@dimen/item_credit_max_character_width"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/color_sub_text" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

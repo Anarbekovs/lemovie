@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_add_to_watchlist"
+        android:title="@string/menu_add_to_watchlist" />
+    <item
+        android:id="@+id/menu_add_to_favorites"
+        android:title="@string/menu_add_to_favorite" />
+    <item
+        android:id="@+id/menu_delete"
+        android:title="@string/menu_delete" />
+</menu>

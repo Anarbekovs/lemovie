@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/icon_group_main"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_item_movies"
+            android:checked='true'
+            android:icon="@drawable/ic_local_movies_white_24dp"
+            android:title="@string/nav_title_movies" />
+
+        <item
+            android:id="@+id/nav_item_tv_shows"
+            android:icon="@drawable/ic_live_tv_white_24dp"
+            android:title="@string/nav_title_tv_shows" />
+
+        <item
+            android:id="@+id/nav_item_persons"
+            android:icon="@drawable/ic_people_white_24dp"
+            android:title="@string/nav_title_persons" />
+    </group>
+
+    <group
+        android:id="@+id/icon_group_secondary"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_item_settings"
+            android:icon="@drawable/ic_settings_white_24dp"
+            android:title="@string/nav_title_settings" />
+
+        <item
+            android:id="@+id/nav_item_contact"
+            android:icon="@drawable/ic_help_outline_white_24dp"
+            android:title="@string/nav_title_contact" />
+
+        <item
+            android:id="@+id/nav_item_rate"
+            android:icon="@drawable/ic_star_white_24dp"
+            android:title="@string/nav_title_rate" />
+    </group>
+
+</menu>

@@ -1,0 +1,427 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 6,
+    "identityHash": "95ea71a55409fa28f79bee1083064256",
+    "entities": [
+      {
+        "tableName": "Movies",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT, `original_title` TEXT, `tagline` TEXT, `release_date` TEXT, `genres` TEXT, `poster` TEXT, `poster_preview` TEXT, `posters` TEXT, `description` TEXT, `budget` INTEGER NOT NULL, `revenue` INTEGER NOT NULL, `status` TEXT, `language` TEXT, `runtime` INTEGER NOT NULL, `rating` REAL NOT NULL, `tmdb_rating` REAL NOT NULL, `votes_count` INTEGER NOT NULL, `recent` INTEGER NOT NULL, `watchlist` INTEGER NOT NULL, `favorite` INTEGER NOT NULL, `creation_date` INTEGER, `actors` TEXT, `directors` TEXT, `writers` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "mId",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTitle",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mOriginalTitle",
+            "columnName": "original_title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTagLine",
+            "columnName": "tagline",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mReleaseDate",
+            "columnName": "release_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mGenres",
+            "columnName": "genres",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPoster",
+            "columnName": "poster",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPosterPreview",
+            "columnName": "poster_preview",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mAllPosters",
+            "columnName": "posters",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mDescription",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mBudget",
+            "columnName": "budget",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mRevenue",
+            "columnName": "revenue",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mStatus",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mLanguage",
+            "columnName": "language",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mRuntime",
+            "columnName": "runtime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mRating",
+            "columnName": "rating",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTmdbRating",
+            "columnName": "tmdb_rating",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mVotesCount",
+            "columnName": "votes_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mRecent",
+            "columnName": "recent",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mWatchlist",
+            "columnName": "watchlist",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mFavorite",
+            "columnName": "favorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCreationDate",
+            "columnName": "creation_date",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mActors",
+            "columnName": "actors",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mDirectors",
+            "columnName": "directors",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mWriters",
+            "columnName": "writers",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "TVShows",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT, `original_title` TEXT, `first_air_date` TEXT, `genres` TEXT, `poster` TEXT, `poster_preview` TEXT, `posters` TEXT, `description` TEXT, `status` TEXT, `is_in_production` INTEGER NOT NULL, `episodes_count` INTEGER NOT NULL, `seasons_count` INTEGER NOT NULL, `language` TEXT, `network` TEXT, `episode_runtime` INTEGER NOT NULL, `rating` REAL NOT NULL, `tmdb_rating` REAL NOT NULL, `votes_count` INTEGER NOT NULL, `recent` INTEGER NOT NULL, `watchlist` INTEGER NOT NULL, `favorite` INTEGER NOT NULL, `creation_date` INTEGER, `creators` TEXT, `actors` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "mId",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTitle",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mOriginalTitle",
+            "columnName": "original_title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mFirstAirDate",
+            "columnName": "first_air_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mGenres",
+            "columnName": "genres",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPoster",
+            "columnName": "poster",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPosterPreview",
+            "columnName": "poster_preview",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mAllPosters",
+            "columnName": "posters",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mDescription",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mStatus",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mIsInProduction",
+            "columnName": "is_in_production",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mEpisodesCount",
+            "columnName": "episodes_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mSeasonsCount",
+            "columnName": "seasons_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mLanguage",
+            "columnName": "language",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mNetwork",
+            "columnName": "network",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mEpisodeRuntime",
+            "columnName": "episode_runtime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mRating",
+            "columnName": "rating",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mTmdbRating",
+            "columnName": "tmdb_rating",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mVotesCount",
+            "columnName": "votes_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mRecent",
+            "columnName": "recent",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mWatchlist",
+            "columnName": "watchlist",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mFavorite",
+            "columnName": "favorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCreationDate",
+            "columnName": "creation_date",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mCreators",
+            "columnName": "creators",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mActors",
+            "columnName": "actors",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Persons",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT, `known_as` TEXT, `birthday` TEXT, `deathday` TEXT, `biography` TEXT, `photo` TEXT, `photo_preview` TEXT, `favorite` INTEGER NOT NULL, `creation_date` INTEGER, `tv_show_credits` TEXT, `movies` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "mId",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mName",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mKnownAs",
+            "columnName": "known_as",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mBirthday",
+            "columnName": "birthday",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mDeathday",
+            "columnName": "deathday",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mBiography",
+            "columnName": "biography",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPhoto",
+            "columnName": "photo",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mPhotoPreview",
+            "columnName": "photo_preview",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mFavorite",
+            "columnName": "favorite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mCreationDate",
+            "columnName": "creation_date",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mTvShowsCredits",
+            "columnName": "tv_show_credits",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mMoviesCredits",
+            "columnName": "movies",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"95ea71a55409fa28f79bee1083064256\")"
+    ]
+  }
+}

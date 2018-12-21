@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_show_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardBackgroundColor="@android:color/transparent"
+    card_view:cardElevation="@dimen/item_card_elevation">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/item_main_min_height">
+
+        <ImageView
+            android:id="@+id/tv_show_poster_image"
+            android:layout_width="@dimen/item_main_image_width"
+            android:layout_height="@dimen/item_main_image_height"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/margin_small"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/tv_show_poster_desc"
+            android:scaleType="centerInside" />
+
+        <ImageView
+            android:id="@+id/tv_show_context_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="@dimen/margin_half"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_half"
+            android:layout_marginTop="@dimen/margin_half"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_more_vert_white_24dp"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_show_release_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:layout_marginStart="@dimen/margin_half"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/tv_show_poster_image"
+            android:layout_toStartOf="@+id/tv_show_context_menu"
+            android:ellipsize="end"
+            android:maxLines="@integer/item_release_year_max_lines"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/color_sub_text" />
+
+        <TextView
+            android:id="@+id/tv_show_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_show_release_year"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:layout_marginStart="@dimen/margin_half"
+            android:layout_marginTop="@dimen/margin_half"
+            android:layout_toEndOf="@+id/tv_show_poster_image"
+            android:ellipsize="end"
+            android:maxLines="@integer/item_title_max_lines"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/color_main_text" />
+
+        <TextView
+            android:id="@+id/tv_show_genres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_show_title"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:layout_marginStart="@dimen/margin_half"
+            android:layout_marginTop="@dimen/margin_half"
+            android:layout_toEndOf="@+id/tv_show_poster_image"
+            android:ellipsize="end"
+            android:maxLines="@integer/item_genres_max_lines"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/color_sub_text" />
+
+        <ImageView
+            android:id="@+id/tv_show_rate_star_image"
+            android:layout_width="@dimen/tmdb_logo_image_width"
+            android:layout_height="@dimen/tmdb_logo_image_height"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/tv_show_genres"
+            android:layout_marginStart="@dimen/margin_half"
+            android:layout_toEndOf="@+id/tv_show_poster_image"
+            android:paddingBottom="@dimen/padding_half"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_star_border_white_24dp"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_show_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/tv_show_genres"
+            android:layout_toEndOf="@+id/tv_show_rate_star_image"
+            android:paddingBottom="@dimen/padding_half"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/color_main_text" />
+
+        <ImageView
+            android:id="@+id/tv_show_tmdb_logo_image"
+            android:layout_width="@dimen/tmdb_logo_image_width"
+            android:layout_height="@dimen/tmdb_logo_image_height"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/tv_show_genres"
+            android:layout_marginStart="@dimen/margin_half"
+            android:layout_toEndOf="@+id/tv_show_rating"
+            android:paddingBottom="@dimen/padding_half"
+            android:scaleType="centerInside"
+            android:src="@drawable/tmdb_logo_stacked"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_show_tmdb_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/tv_show_genres"
+            android:layout_toEndOf="@+id/tv_show_tmdb_logo_image"
+            android:paddingBottom="@dimen/padding_half"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/color_main_text" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

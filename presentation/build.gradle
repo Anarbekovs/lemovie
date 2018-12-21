@@ -1,0 +1,82 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '28.0.3'
+    defaultConfig {
+        applicationId "com.lemon.lemonmovies"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
+
+    //support
+    implementation "com.android.support.constraint:constraint-layout:$CONSTRAINT_VER"
+    implementation "com.android.support:appcompat-v7:$SUPPORT_VER"
+    implementation "com.android.support:design:$SUPPORT_VER"
+    implementation "com.android.support:support-v4:$SUPPORT_VER"
+    implementation "com.android.support:cardview-v7:$SUPPORT_VER"
+
+    //butterknife
+    implementation "com.jakewharton:butterknife:$BUTTERKNIFE_VER"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$BUTTERKNIFE_VER"
+
+    //dagger2
+    implementation "com.google.dagger:dagger:$DAGGER_VER"
+    annotationProcessor "com.google.dagger:dagger-compiler:$DAGGER_VER"
+
+    //icepick
+    implementation "frankiesardo:icepick:$ICEPICK_VER"
+    annotationProcessor "frankiesardo:icepick-processor:$ICEPICK_VER"
+
+    //network
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VER@jar"
+    implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VER@jar"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VER@jar"
+    implementation "com.google.code.gson:gson:$GSON_VER@jar"
+    implementation "com.squareup.okhttp3:okhttp:$OKHTTP_VER@jar"
+    implementation "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VER@jar"
+
+    //rxJava2
+    implementation "io.reactivex.rxjava2:rxjava:$RXJAVA_VER"
+    implementation "io.reactivex.rxjava2:rxandroid:$RXANDROID_VER"
+
+    //room
+    implementation "android.arch.persistence.room:runtime:$ROOM_VER"
+
+    //timber
+    implementation "com.jakewharton.timber:timber:$TIMBER_VER"
+
+    //glide
+    implementation "com.github.bumptech.glide:glide:$GLIDE_VER"
+    implementation "com.github.bumptech.glide:okhttp3-integration:$GLIDE_VER"
+    annotationProcessor "com.github.bumptech.glide:compiler:$GLIDE_VER"
+
+    //test
+    testImplementation "junit:junit:$JUNIT_VER"
+    androidTestImplementation "com.android.support.test:runner:$RUNNER_VER"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$ESPRESSO_VER"
+}

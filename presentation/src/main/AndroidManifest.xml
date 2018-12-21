@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lemon.lemonmovies">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name="com.lemon.lemonmovies.LemonMoviesApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_title"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.Toolbar">
+        <activity
+            android:name="com.lemon.lemonmovies.ui.movie.activity.MoviesActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.lemon.lemonmovies.ui.tvshow.activity.TvShowsActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.lemon.lemonmovies.ui.person.activity.PersonsActivity"
+            android:launchMode="singleTask" />
+        <activity android:name="com.lemon.lemonmovies.ui.settings.SettingsStubActivity" />
+
+        <activity android:name="com.lemon.lemonmovies.ui.movie.activity.MovieDetailActivity" />
+        <activity android:name="com.lemon.lemonmovies.ui.tvshow.activity.TvShowDetailActivity" />
+        <activity android:name="com.lemon.lemonmovies.ui.person.activity.PersonDetailActivity" />
+
+        <activity android:name="com.lemon.lemonmovies.ui.movie.activity.MoviesSearchActivity" />
+        <activity android:name="com.lemon.lemonmovies.ui.person.activity.PersonsSearchActivity" />
+        <activity android:name="com.lemon.lemonmovies.ui.tvshow.activity.TvShowsSearchActivity" />
+    </application>
+
+</manifest>

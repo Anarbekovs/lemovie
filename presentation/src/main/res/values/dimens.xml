@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="tab_max_width">0dp</dimen>
+
+    <dimen name="tmdb_logo_image_width">24dp</dimen>
+    <dimen name="tmdb_logo_image_height">24dp</dimen>
+
+    <dimen name="padding_small">4dp</dimen>
+    <dimen name="padding_half">8dp</dimen>
+    <dimen name="padding_standard">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="padding_double">32dp</dimen>
+
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="margin_half">8dp</dimen>
+    <dimen name="margin_standard">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_double">32dp</dimen>
+
+    <dimen name="detail_image_width">160dp</dimen>
+    <dimen name="detail_image_height">240dp</dimen>
+    <dimen name="detail_field_zero_width">0dp</dimen>
+    <dimen name="detail_divider_height">0.5dp</dimen>
+
+    <dimen name="item_card_elevation">0dp</dimen>
+    <dimen name="item_main_image_width">80dp</dimen>
+    <dimen name="item_main_image_height">120dp</dimen>
+    <dimen name="item_main_min_height">120dp</dimen>
+
+    <dimen name="item_result_min_width">140dp</dimen>
+    <dimen name="item_result_max_title_width">120dp</dimen>
+
+    <dimen name="item_credit_min_width">90dp</dimen>
+    <dimen name="item_credit_max_width">90dp</dimen>
+    <dimen name="item_credit_max_title_width">100dp</dimen>
+    <dimen name="item_credit_max_character_width">90dp</dimen>
+
+</resources>

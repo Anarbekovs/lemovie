@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Titles-->
+    <string name="app_title">Lemon Movies</string>
+    <string name="app_title_movies">Movies</string>
+    <string name="app_title_tv_shows">TV Shows</string>
+    <string name="app_title_persons">Persons</string>
+    <string name="app_title_settings">Settings</string>
+    <string name="app_title_search_movies">Search Movies</string>
+    <string name="app_title_search_tv_shows">Search TV Shows</string>
+    <string name="app_title_search_persons">Search Persons</string>
+
+    <!--Navigation Drawer-->
+    <string name="nav_title_movies">Movies</string>
+    <string name="nav_title_tv_shows">TV Shows</string>
+    <string name="nav_title_persons">Persons</string>
+    <string name="nav_title_contact">Contact Developer</string>
+    <string name="nav_title_settings">Settings</string>
+    <string name="nav_title_rate">Rate Us</string>
+    <string name="nav_drawer_open">Open Drawer</string>
+    <string name="nav_drawer_close">Close Drawer</string>
+
+    <!--Movies Fragments Empty Text-->
+    <string name="text_empty_movies_recent">You didn\'t caught any movie yet.\nPress button below to catch your first one!</string>
+    <string name="text_empty_movies_watchlist">Your movies watchlist is empty</string>
+    <string name="text_empty_movies_favorites">Your favorite movies list is empty</string>
+
+    <!--TV Shows Fragments Empty Text-->
+    <string name="text_empty_tv_shows_recent">You didn\'t caught any TV show yet.\nPress button below to catch your first one!</string>
+    <string name="text_empty_tv_shows_watchlist">Your TV shows watchlist is empty</string>
+    <string name="text_empty_tv_shows_favorites">Your favorite TV shows list is empty</string>
+
+    <!--Actors Empty Text-->
+    <string name="text_empty_persons">Your favorite persons list is empty</string>
+
+    <!--Search-->
+    <string name="hint_search">Search…</string>
+    <string name="text_empty_search_movies">Movies wasn\'t found</string>
+    <string name="text_empty_search_tv_shows">TV shows wasn\'t found</string>
+    <string name="text_empty_search_persons">Persons wasn\'t found</string>
+
+    <!--Errors-->
+    <string name="text_exception_no_listener_impl">Activity must implement Listener interface</string>
+
+    <!--Menu Actions-->
+    <string name="action_search">Search</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_catch">Catch It!</string>
+    <string name="action_settings">Settings</string>
+
+    <!--String Arrays-->
+    <string-array name="movies_sections">
+        <item>recent</item>
+        <item>watchlist</item>
+        <item>favorites</item>
+    </string-array>
+
+    <string-array name="tv_shows_sections">
+        <item>recent</item>
+        <item>watchlist</item>
+        <item>favorites</item>
+    </string-array>
+
+    <!--Mail-->
+    <string name="mail_address">test@gmail.com</string>
+    <string name="mail_subject">Feedback: Catch Movie (version %s)</string>
+    <string name="mail_body">Device: %s\nBuild: %s\nVersion: %s\n\nMessage:\u0020\u0013</string>
+    <string name="mail_chooser_text">Choose app:</string>
+
+    <!--Image Descriptions-->
+    <string name="app_main_logo_desc">Catch Tonight Movie!</string>
+    <string name="movie_poster_desc">Movie Poster</string>
+    <string name="tv_show_poster_desc">TV Show Poster</string>
+    <string name="person_photo_desc">Person Photo</string>
+
+    <!--Details-->
+    <string name="detail_overview_title">Overview:</string>
+    <string name="detail_cast_title">Cast:</string>
+    <string name="detail_movie_crew_title">Crew:</string>
+    <string name="detail_tv_show_creators_title">Creator:</string>
+
+    <string name="detail_person_biography_title">Biography:</string>
+    <string name="detail_person_filmography_title">Filmography:</string>
+    <string name="detail_person_movies_credits">Movies</string>
+    <string name="detail_person_tv_shows_credits">TV Shows</string>
+    <string name="detail_person_born_at">Born:</string>
+    <string name="detail_person_died_at">Died:</string>
+    <string name="detail_tv_show_seasons_title">Seasons:</string>
+
+    <string name="credit_unknown_title">Unknown</string>
+
+    <!--Popup Menu-->
+    <string name="menu_add_to_watchlist">Add Watchlist</string>
+    <string name="menu_add_to_favorite">Add Favorite</string>
+    <string name="menu_delete">Delete</string>
+
+</resources>
