@@ -45,7 +45,7 @@ public final class PersonsSearchActivity extends BaseActivity implements OnPerso
     @Override
     protected void onResume() {
         super.onResume();
-        setTitle(getString(R.string.app_title_search_persons));
+        setTitle(getString(R.string.app_title_search));
         if (mSearchView != null) {
             mSearchView.clearFocus();
         }
@@ -60,6 +60,7 @@ public final class PersonsSearchActivity extends BaseActivity implements OnPerso
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         final MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchItem.expandActionView();
         mSearchView = (SearchView) searchItem.getActionView();
         mSearchView.setQueryHint(getString(R.string.hint_search));
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

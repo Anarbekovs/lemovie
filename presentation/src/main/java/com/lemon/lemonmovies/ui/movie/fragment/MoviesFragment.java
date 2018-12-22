@@ -112,9 +112,11 @@ public final class MoviesFragment extends BaseFragment implements MoviesView {
 
     private void prepareRecyclerView() {
         final FloatingActionButton fab = Objects.requireNonNull(getActivity()).findViewById(R.id.fab_find_movie);
+        final FloatingActionButton fab2 = Objects.requireNonNull(getActivity()).findViewById(R.id.fab_swap_movie);
         mMoviesRecyclerView.setAdapter(mMoviesAdapter);
         mMoviesRecyclerView.setWillNotDraw(false);
         mMoviesRecyclerView.addOnScrollListener(new RecyclerViewScrollListenerImpl(fab));
+        mMoviesRecyclerView.addOnScrollListener(new RecyclerViewScrollListenerImpl(fab2));
         mMoviesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false));
         mMoviesRecyclerView.addItemDecoration(LinearSpacingItemDecoration.newBuilder()

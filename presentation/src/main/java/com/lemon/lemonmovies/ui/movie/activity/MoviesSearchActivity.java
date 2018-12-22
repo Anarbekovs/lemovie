@@ -45,7 +45,7 @@ public final class MoviesSearchActivity extends BaseActivity implements OnMovieC
     @Override
     protected void onResume() {
         super.onResume();
-        setTitle(getString(R.string.app_title_search_movies));
+        setTitle(getString(R.string.app_title_search));
         if (mSearchView != null) {
             mSearchView.clearFocus();
         }
@@ -60,6 +60,7 @@ public final class MoviesSearchActivity extends BaseActivity implements OnMovieC
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         final MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchItem.expandActionView();
         mSearchView = (SearchView) searchItem.getActionView();
         mSearchView.setQueryHint(getString(R.string.hint_search));
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -99,7 +100,7 @@ public final class MoviesSearchActivity extends BaseActivity implements OnMovieC
         int id = item.getItemId();
         switch (id) {
             case android.R.id.home:
-                onBackPressed();
+               onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.listener.OnMovieClickListener;
@@ -17,6 +18,8 @@ import com.lemon.lemonmovies.ui.movie.adapter.MoviesPagerAdapter;
 import com.lemon.lemonmovies.ui.movie.fragment.MoviesFragment;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Movies Activity contains movie collections
@@ -33,6 +36,8 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
     TabLayout mMoviesTabLayout;
     @BindView(R.id.fab_find_movie)
     FloatingActionButton mFloatingButtonFindMovie;
+    @BindView(R.id.fab_swap_movie)
+    FloatingActionButton mFloatingButtonSwapMovie;
 
     private static final int OFFSCREEN_PAGE_LIMIT = 2;
 
@@ -44,9 +49,9 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
+        ButterKnife.bind(this);
         super.setupDrawer();
         initViewPager();
-        setFabListener();
     }
 
     @Override
@@ -80,12 +85,22 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
         mMoviesTabLayout.setupWithViewPager(mMoviesViewPager);
     }
 
-    private void setFabListener() {
-        mFloatingButtonFindMovie.setOnClickListener(v -> getNavigator().navigateToMovieSearchScreen(this));
-    }
 
     @Override
     public void onMovieClick(int movieId) {
         getNavigator().navigateToMovieDetailScreen(this, movieId);
+    }
+
+    @OnClick({R.id.fab_find_movie, R.id.fab_swap_movie})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.fab_find_movie:
+                getNavigator().navigateToMovieSearchScreen(this);
+                break;
+            case R.id.fab_swap_movie:
+                //TODO
+                //swap function
+                break;
+        }
     }
 }
