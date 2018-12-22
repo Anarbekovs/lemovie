@@ -36,5 +36,6 @@
     <dimen name="item_credit_max_width">90dp</dimen>
     <dimen name="item_credit_max_title_width">100dp</dimen>
     <dimen name="item_credit_max_character_width">90dp</dimen>
+    <dimen name="fab_margin">32dp</dimen>
 
 </resources>
