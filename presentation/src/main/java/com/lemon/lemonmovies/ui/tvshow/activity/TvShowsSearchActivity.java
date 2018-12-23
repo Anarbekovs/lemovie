@@ -10,9 +10,11 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.lemon.domain.types.TvShowType;
 import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.listener.OnTvShowClickListener;
 import com.lemon.lemonmovies.ui.base.BaseActivity;
+import com.lemon.lemonmovies.ui.tvshow.fragment.TvShowsFragment;
 import com.lemon.lemonmovies.ui.tvshow.fragment.TvShowsPopularFragment;
 import com.lemon.lemonmovies.ui.tvshow.fragment.TvShowsSearchFragment;
 
@@ -109,7 +111,7 @@ public final class TvShowsSearchActivity extends BaseActivity implements OnTvSho
 
     private void initUI() {
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.frame_tv_shows_result, TvShowsPopularFragment.newInstance(), TvShowsPopularFragment.TAG)
+                .add(R.id.frame_tv_shows_result, TvShowsFragment.newInstance(TvShowType.RECENT))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
     }

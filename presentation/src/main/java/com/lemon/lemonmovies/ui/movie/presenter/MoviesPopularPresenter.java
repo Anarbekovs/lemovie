@@ -19,7 +19,7 @@ import timber.log.Timber;
 public final class MoviesPopularPresenter extends BasePresenter<MoviesPopularView> {
 
     private final GetPopularMoviesUseCase mGetPopularMoviesUseCase;
-    private static final int mPage = 1; //todo stub
+    private static final int mPage = 1; //todo random
 
     @Inject
     public MoviesPopularPresenter(final GetPopularMoviesUseCase getPopularMoviesUseCase) {

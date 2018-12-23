@@ -13,6 +13,7 @@ import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.listener.OnPersonClickListener;
 import com.lemon.lemonmovies.ui.base.NavigationBaseActivity;
 import com.lemon.lemonmovies.ui.person.fragment.PersonsFragment;
+import com.lemon.lemonmovies.ui.person.fragment.PersonsPopularFragment;
 
 import butterknife.BindView;
 
@@ -70,7 +71,7 @@ public final class PersonsActivity extends NavigationBaseActivity implements OnP
 
     private void initUI() {
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.frame_persons, PersonsFragment.newInstance(), PersonsFragment.TAG)
+                .add(R.id.frame_persons, PersonsPopularFragment.newInstance(), PersonsPopularFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
     }

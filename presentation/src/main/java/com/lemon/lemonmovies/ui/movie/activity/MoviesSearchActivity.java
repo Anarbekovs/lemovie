@@ -10,9 +10,11 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.lemon.domain.types.MovieType;
 import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.listener.OnMovieClickListener;
 import com.lemon.lemonmovies.ui.base.BaseActivity;
+import com.lemon.lemonmovies.ui.movie.fragment.MoviesFragment;
 import com.lemon.lemonmovies.ui.movie.fragment.MoviesPopularFragment;
 import com.lemon.lemonmovies.ui.movie.fragment.MoviesSearchFragment;
 
@@ -109,7 +111,7 @@ public final class MoviesSearchActivity extends BaseActivity implements OnMovieC
 
     private void initUI() {
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.frame_movies_result, MoviesPopularFragment.newInstance(), MoviesPopularFragment.TAG)
+                .add(R.id.frame_movies_result, MoviesFragment.newInstance(MovieType.RECENT))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
     }
