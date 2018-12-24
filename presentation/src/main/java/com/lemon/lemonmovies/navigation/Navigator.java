@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 
+import com.lemon.domain.types.MovieType;
 import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.ui.movie.activity.MovieDetailActivity;
 import com.lemon.lemonmovies.ui.movie.activity.MoviesActivity;
 import com.lemon.lemonmovies.ui.movie.activity.MoviesSearchActivity;
+import com.lemon.lemonmovies.ui.movie.fragment.MoviesFragment;
 import com.lemon.lemonmovies.ui.person.activity.PersonDetailActivity;
 import com.lemon.lemonmovies.ui.person.activity.PersonsActivity;
 import com.lemon.lemonmovies.ui.person.activity.PersonsSearchActivity;
@@ -153,6 +156,7 @@ public final class Navigator {
                 context.getString(R.string.mail_chooser_text)));
     }
 
+
     /**
      * Navigates to Market App Screen
      *
@@ -161,4 +165,6 @@ public final class Navigator {
     public void navigateToMarketAppRating(@NonNull final Context context) {
         //Not implemented yet
     }
+
+
 }

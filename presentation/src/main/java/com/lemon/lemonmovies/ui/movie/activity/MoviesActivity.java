@@ -5,16 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.lemon.domain.types.MovieType;
 import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.listener.OnMovieClickListener;
 import com.lemon.lemonmovies.ui.base.NavigationBaseActivity;
-import com.lemon.lemonmovies.ui.movie.adapter.MoviesPagerAdapter;
 import com.lemon.lemonmovies.ui.movie.fragment.MoviesFragment;
 
 import butterknife.BindView;
@@ -30,11 +31,11 @@ import butterknife.OnClick;
  */
 public final class MoviesActivity extends NavigationBaseActivity implements OnMovieClickListener {
 
-    @BindView(R.id.view_pager)
-    ViewPager mMoviesViewPager;
-    @BindView(R.id.tab_layout)
-    TabLayout mMoviesTabLayout;
-    @BindView(R.id.fab_find_movie)
+    //    @BindView(R.id.view_pager)
+//    ViewPager mMoviesViewPager;
+//    @BindView(R.id.tab_layout)
+//    TabLayout mMoviesTabLayout;
+//    @BindView(R.id.fab_find_movie)
     FloatingActionButton mFloatingButtonFindMovie;
     @BindView(R.id.fab_swap_movie)
     FloatingActionButton mFloatingButtonSwapMovie;
@@ -51,13 +52,14 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
         setContentView(R.layout.activity_movies);
         ButterKnife.bind(this);
         super.setupDrawer();
-        initViewPager();
+        initUI();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         setTitle(R.string.app_title_movies);
+
     }
 
     @Override
@@ -78,11 +80,16 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
         }
     }
 
-    private void initViewPager() {
-        mMoviesViewPager.setAdapter(new MoviesPagerAdapter(getSupportFragmentManager(),
-                getResources().getStringArray(R.array.movies_sections)));
-        mMoviesViewPager.setOffscreenPageLimit(OFFSCREEN_PAGE_LIMIT);
-        mMoviesTabLayout.setupWithViewPager(mMoviesViewPager);
+    private void initUI() {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.frame_movie);
+
+        if (fragment == null) {
+            fm.beginTransaction()
+                    .add(R.id.frame_movie, MoviesFragment.newInstance(MovieType.WATCHLIST), MoviesFragment.TAG)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+        }
     }
 
 

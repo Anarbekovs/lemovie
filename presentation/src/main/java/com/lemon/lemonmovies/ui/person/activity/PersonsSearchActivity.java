@@ -48,7 +48,7 @@ public final class PersonsSearchActivity extends BaseActivity implements OnPerso
     @Override
     protected void onResume() {
         super.onResume();
-        setTitle(getString(R.string.app_title_search));
+        setTitle(getString(R.string.app_favorites_people));
         if (mSearchView != null) {
             mSearchView.clearFocus();
         }

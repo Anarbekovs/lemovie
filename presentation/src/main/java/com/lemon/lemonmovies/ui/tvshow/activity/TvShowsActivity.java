@@ -27,10 +27,10 @@ import butterknife.BindView;
  */
 public final class TvShowsActivity extends NavigationBaseActivity implements OnTvShowClickListener {
 
-    @BindView(R.id.view_pager)
-    ViewPager mTvShowsViewPager;
-    @BindView(R.id.tab_layout)
-    TabLayout mTvShowsTabLayout;
+//    @BindView(R.id.view_pager)
+//    ViewPager mTvShowsViewPager;
+//    @BindView(R.id.tab_layout)
+//    TabLayout mTvShowsTabLayout;
     @BindView(R.id.fab_find_tv_show)
     FloatingActionButton mFloatingButtonFindTvShow;
 
@@ -45,7 +45,7 @@ public final class TvShowsActivity extends NavigationBaseActivity implements OnT
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tv_shows);
         super.setupDrawer();
-        initViewPager();
+       // initViewPager();
         setFabListener();
     }
 
@@ -73,12 +73,12 @@ public final class TvShowsActivity extends NavigationBaseActivity implements OnT
         }
     }
 
-    private void initViewPager() {
-        mTvShowsViewPager.setAdapter(new TvShowsPagerAdapter(getSupportFragmentManager(),
-                getResources().getStringArray(R.array.tv_shows_sections)));
-        mTvShowsViewPager.setOffscreenPageLimit(OFFSCREEN_PAGE_LIMIT);
-        mTvShowsTabLayout.setupWithViewPager(mTvShowsViewPager);
-    }
+//    private void initViewPager() {
+//        mTvShowsViewPager.setAdapter(new TvShowsPagerAdapter(getSupportFragmentManager(),
+//                getResources().getStringArray(R.array.tv_shows_sections)));
+//        mTvShowsViewPager.setOffscreenPageLimit(OFFSCREEN_PAGE_LIMIT);
+//        mTvShowsTabLayout.setupWithViewPager(mTvShowsViewPager);
+//    }
 
     private void setFabListener() {
         mFloatingButtonFindTvShow.setOnClickListener(v -> getNavigator().navigateToTvShowSearchScreen(this));

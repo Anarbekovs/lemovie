@@ -4,16 +4,21 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 
+import com.lemon.domain.types.MovieType;
+import com.lemon.domain.types.TvShowType;
 import com.lemon.lemonmovies.DeviceConfigurationHelper;
 import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.ui.movie.activity.MoviesActivity;
+import com.lemon.lemonmovies.ui.movie.fragment.MoviesFragment;
 import com.lemon.lemonmovies.ui.person.activity.PersonsActivity;
 import com.lemon.lemonmovies.ui.tvshow.activity.TvShowsActivity;
+import com.lemon.lemonmovies.ui.tvshow.fragment.TvShowsFragment;
 
 import butterknife.BindView;
 
@@ -89,6 +94,50 @@ public abstract class NavigationBaseActivity extends BaseActivity {
                     }, NAV_CLOSE_DELAY);
                 }
                 break;
+            case R.id.nav_item_watchlist:
+                if (this instanceof MoviesActivity) {
+                    mNavItemSelected = id;
+                    mHandler.postDelayed(() -> {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.frame_movie, MoviesFragment.newInstance(MovieType.WATCHLIST), MoviesFragment.TAG)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                                .commit();
+                        overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
+                    }, NAV_CLOSE_DELAY);
+                }
+                else {
+                    mNavItemSelected = id;
+                    mHandler.postDelayed(() -> {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.frame_movie, TvShowsFragment.newInstance(TvShowType.WATCHLIST), MoviesFragment.TAG)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                                .commit();
+                        overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
+                    }, NAV_CLOSE_DELAY);
+                }
+                break;
+            case R.id.nav_item_favorites:
+                if (this instanceof MoviesActivity) {
+                    mNavItemSelected = id;
+                    mHandler.postDelayed(() -> {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.frame_movie, MoviesFragment.newInstance(MovieType.FAVORITE), MoviesFragment.TAG)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                                .commit();
+                        overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
+                    }, NAV_CLOSE_DELAY);
+                }
+                else {
+                    mNavItemSelected = id;
+                    mHandler.postDelayed(() -> {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.frame_tv_shows, TvShowsFragment.newInstance(TvShowType.FAVORITE), MoviesFragment.TAG)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                                .commit();
+                        overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
+                    }, NAV_CLOSE_DELAY);
+                }
+                break;
             case R.id.nav_item_settings:
                 getNavigator().navigateToSettingsScreen(this);
                 break;
@@ -103,6 +152,7 @@ public abstract class NavigationBaseActivity extends BaseActivity {
                 getNavigator().navigateToMarketAppRating(this);
                 break;
             default:
+
                 break;
         }
         mDrawer.closeDrawer(Gravity.START);
