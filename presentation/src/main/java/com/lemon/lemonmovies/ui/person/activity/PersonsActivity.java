@@ -10,7 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.lemon.lemonmovies.R;
+import com.lemon.lemonmovies.listener.OnMovieClickListener;
 import com.lemon.lemonmovies.listener.OnPersonClickListener;
+import com.lemon.lemonmovies.listener.OnTvShowClickListener;
 import com.lemon.lemonmovies.ui.base.NavigationBaseActivity;
 import com.lemon.lemonmovies.ui.person.fragment.PersonsFragment;
 import com.lemon.lemonmovies.ui.person.fragment.PersonsPopularFragment;
@@ -24,7 +26,7 @@ import butterknife.BindView;
  * @see OnPersonClickListener
  * @see PersonsFragment
  */
-public final class PersonsActivity extends NavigationBaseActivity implements OnPersonClickListener {
+public final class PersonsActivity extends NavigationBaseActivity implements OnPersonClickListener, OnMovieClickListener {
 
     @BindView(R.id.fab_find_person)
     FloatingActionButton mFloatingButtonFindPerson;
@@ -83,6 +85,11 @@ public final class PersonsActivity extends NavigationBaseActivity implements OnP
     @Override
     public void onPersonClick(int personId) {
         getNavigator().navigateToPersonDetailScreen(this, personId);
+    }
+
+    @Override
+    public void onMovieClick(int movieId) {
+        getNavigator().navigateToMovieDetailScreen(this, movieId);
     }
 }
 

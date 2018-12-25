@@ -15,7 +15,9 @@ import android.view.View;
 import com.lemon.domain.types.MovieType;
 import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.listener.OnMovieClickListener;
+import com.lemon.lemonmovies.listener.OnPersonClickListener;
 import com.lemon.lemonmovies.ui.base.NavigationBaseActivity;
+import com.lemon.lemonmovies.ui.movie.fragment.MovieDetailFragment;
 import com.lemon.lemonmovies.ui.movie.fragment.MoviesFragment;
 
 import butterknife.BindView;
@@ -29,18 +31,13 @@ import butterknife.OnClick;
  * @see OnMovieClickListener
  * @see MoviesFragment
  */
-public final class MoviesActivity extends NavigationBaseActivity implements OnMovieClickListener {
+public final class MoviesActivity extends NavigationBaseActivity implements OnMovieClickListener, OnPersonClickListener {
 
-    //    @BindView(R.id.view_pager)
-//    ViewPager mMoviesViewPager;
-//    @BindView(R.id.tab_layout)
-//    TabLayout mMoviesTabLayout;
-//    @BindView(R.id.fab_find_movie)
+
+    @BindView(R.id.fab_find_movie)
     FloatingActionButton mFloatingButtonFindMovie;
     @BindView(R.id.fab_swap_movie)
     FloatingActionButton mFloatingButtonSwapMovie;
-
-    private static final int OFFSCREEN_PAGE_LIMIT = 2;
 
     public static Intent newIntent(final Context context) {
         return new Intent(context, MoviesActivity.class);
@@ -86,7 +83,7 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
 
         if (fragment == null) {
             fm.beginTransaction()
-                    .add(R.id.frame_movie, MoviesFragment.newInstance(MovieType.WATCHLIST), MoviesFragment.TAG)
+                    .add(R.id.frame_movie,MovieDetailFragment.newInstance(570642), MoviesFragment.TAG)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
@@ -96,6 +93,11 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
     @Override
     public void onMovieClick(int movieId) {
         getNavigator().navigateToMovieDetailScreen(this, movieId);
+    }
+
+    @Override
+    public void onPersonClick(final int personId) {
+        getNavigator().navigateToPersonDetailScreen(this, personId);
     }
 
     @OnClick({R.id.fab_find_movie, R.id.fab_swap_movie})

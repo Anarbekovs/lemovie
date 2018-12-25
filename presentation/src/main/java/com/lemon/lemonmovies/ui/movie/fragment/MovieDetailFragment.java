@@ -101,6 +101,13 @@ public final class MovieDetailFragment extends BaseFragment implements MovieDeta
         fragment.setArguments(args);
         return fragment;
     }
+//   public MovieDetailFragment () {
+//       final int movieId = mPresenter.getRandomMovieId();
+//        final MovieDetailFragment fragment = new MovieDetailFragment();
+//        final Bundle args = new Bundle();
+//        args.putInt(ARG_MOVIE_ID, movieId);
+//        fragment.setArguments(args);
+//    }
 
     @Override
     public void onAttach(Context context) {
@@ -137,9 +144,10 @@ public final class MovieDetailFragment extends BaseFragment implements MovieDeta
     @Override
     public void onStart() {
         super.onStart();
-        if (mMovieId != 0) {
-            getMovieDetails();
-        }
+//        if (mMovieId != 0) {
+//            getMovieDetails();
+//        }
+        mPresenter.getLatestMovieDetails();
     }
 
     private void initOnPersonClickListener(final Context context) {

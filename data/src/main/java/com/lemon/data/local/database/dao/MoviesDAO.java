@@ -12,6 +12,7 @@ import com.lemon.data.local.entity.MovieEntity;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 
@@ -83,4 +84,7 @@ public interface MoviesDAO {
      */
     @Update
     void updateMovie(final MovieEntity movieEntity);
+
+    @Query("SELECT * FROM Movies LIMIT 1")
+    Single<MovieEntity> getLatestMovie();
 }

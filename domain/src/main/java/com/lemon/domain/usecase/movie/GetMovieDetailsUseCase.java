@@ -22,4 +22,8 @@ public final class GetMovieDetailsUseCase {
     public Observable<MovieDetailModel> execute(final int movieId) {
         return mMoviesRepository.getMovieDetailsById(movieId);
     }
+
+    public Observable<MovieDetailModel> execute() {
+        return mMoviesRepository.getLatestMovieDetails();
+    }
 }

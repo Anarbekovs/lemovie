@@ -53,6 +53,7 @@ public final class ApiMapper {
 
     /**
      * Request person details by person id
+     *
      * @param personId - a person id
      * @return {@link Observable} of person details pojo-class
      */
@@ -66,7 +67,7 @@ public final class ApiMapper {
      * Perform movies search by query
      *
      * @param query - a string query
-     * @param page - a page number
+     * @param page  - a page number
      * @return {@link Observable} of movie pojo-class list with request results
      */
     public Observable<List<MovieResult>> searchMoviesByQuery(final String query, final int page) {
@@ -81,7 +82,7 @@ public final class ApiMapper {
      * Perform tv shows search by query
      *
      * @param query - a string query
-     * @param page - a page number
+     * @param page  - a page number
      * @return {@link Observable} of tv show pojo-class list with request results
      */
     public Observable<List<TvShowResult>> searchTvShowsByQuery(final String query, final int page) {
@@ -96,7 +97,7 @@ public final class ApiMapper {
      * Perform persons search by query
      *
      * @param query - a string query
-     * @param page - a page number
+     * @param page  - a page number
      * @return {@link Observable} of persons pojo-class list with request results
      */
     public Observable<List<PersonResult>> searchPersonsByQuery(final String query, final int page) {
@@ -110,6 +111,7 @@ public final class ApiMapper {
 
     /**
      * Request popular movies
+     *
      * @param page - a page number
      * @return {@link Observable} of popular movie results list
      */
@@ -122,6 +124,7 @@ public final class ApiMapper {
 
     /**
      * Request popular tv shows
+     *
      * @param page - a page number
      * @return {@link Observable} of popular tv show results list
      */
@@ -134,6 +137,7 @@ public final class ApiMapper {
 
     /**
      * Request popular persons
+     *
      * @param page - a page number
      * @return {@link Observable} of popular person results list
      */
@@ -144,12 +148,24 @@ public final class ApiMapper {
                 .toObservable();
     }
 
+
+    /**
+     * Request latest added movie
+     *
+     * @return {@link Observable} of one movie
+     */
+    public Observable<MovieDetail> getLatestAddedMovie() {
+        return mApiService.getLatestMovieDetails(ApiConstants.API_VERSION, ApiConstants.API_KEY,
+                ApiConstants.LANGUAGE, ApiConstants.MOVIE_REQUEST_APPEND)
+                .toObservable();
+    }
+
     /**
      * Class with Api request constants
      */
     private static class ApiConstants {
 
-        private static final String API_KEY = "61bcb0739836557c189f126d3af100af";
+        private static final String API_KEY = "7849d54953c63271841406d8010d78a7";
         private static final int API_VERSION = 3;
         private static final boolean IS_ADULT_ENABLED = false;
         private static final String LANGUAGE = Locale.getDefault().getLanguage();

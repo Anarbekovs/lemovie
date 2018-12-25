@@ -17,6 +17,7 @@ import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.ui.movie.activity.MoviesActivity;
 import com.lemon.lemonmovies.ui.movie.fragment.MoviesFragment;
 import com.lemon.lemonmovies.ui.person.activity.PersonsActivity;
+import com.lemon.lemonmovies.ui.person.fragment.PersonsFragment;
 import com.lemon.lemonmovies.ui.tvshow.activity.TvShowsActivity;
 import com.lemon.lemonmovies.ui.tvshow.fragment.TvShowsFragment;
 
@@ -104,12 +105,20 @@ public abstract class NavigationBaseActivity extends BaseActivity {
                                 .commit();
                         overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
                     }, NAV_CLOSE_DELAY);
-                }
-                else {
+                } else if (this instanceof TvShowsActivity) {
                     mNavItemSelected = id;
                     mHandler.postDelayed(() -> {
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.frame_movie, TvShowsFragment.newInstance(TvShowType.WATCHLIST), MoviesFragment.TAG)
+                                .replace(R.id.frame_tv_shows, TvShowsFragment.newInstance(TvShowType.WATCHLIST), MoviesFragment.TAG)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                                .commit();
+                        overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
+                    }, NAV_CLOSE_DELAY);
+                } else {
+                    mNavItemSelected = id;
+                    mHandler.postDelayed(() -> {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.frame_persons, MoviesFragment.newInstance(MovieType.WATCHLIST), MoviesFragment.TAG)
                                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                                 .commit();
                         overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
@@ -126,8 +135,7 @@ public abstract class NavigationBaseActivity extends BaseActivity {
                                 .commit();
                         overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
                     }, NAV_CLOSE_DELAY);
-                }
-                else {
+                } else if (this instanceof TvShowsActivity) {
                     mNavItemSelected = id;
                     mHandler.postDelayed(() -> {
                         getSupportFragmentManager().beginTransaction()
@@ -136,6 +144,11 @@ public abstract class NavigationBaseActivity extends BaseActivity {
                                 .commit();
                         overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
                     }, NAV_CLOSE_DELAY);
+                } else {
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.frame_persons, PersonsFragment.newInstance())
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                            .commit();
                 }
                 break;
             case R.id.nav_item_settings:

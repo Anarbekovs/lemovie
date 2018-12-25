@@ -17,6 +17,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.Scheduler;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -57,20 +58,6 @@ public final class MoviesRepositoryImpl implements MoviesRepository {
                 .toObservable();
     }
 
-    @Override
-    public Observable<MovieDetailModel> getMovieDetailsById(final int movieId) {
-        return mMoviesDao.getMovieById(movieId).toObservable()
-                .observeOn(Schedulers.computation())
-                .onErrorResumeNext(throwable -> {
-                    return mApiMapper.getMovieDetails(movieId)
-                            .map(MovieEntityMapper::transform)
-                            .doOnNext(entity -> {
-                                entity.setRecent(true);
-                                entity.setCreationDate(new Date());
-                                mMoviesDao.insertMovie(entity);
-                            });
-                }).map(MovieDetailDataMapper::transform);
-    }
 
     @Override
     public Observable<List<MovieResultModel>> getPopularMovies(final int page) {
@@ -161,4 +148,48 @@ public final class MoviesRepositoryImpl implements MoviesRepository {
                     }
                 }).subscribe();
     }
+
+    @Override
+    public Observable<MovieDetailModel> getMovieDetailsById(final int movieId) {
+        return mMoviesDao.getMovieById(movieId).toObservable()
+                .observeOn(Schedulers.computation())
+                .onErrorResumeNext(throwable -> {
+                    return mApiMapper.getMovieDetails(movieId)
+                            .map(MovieEntityMapper::transform)
+                            .doOnNext(entity -> {
+                                entity.setRecent(true);
+                                entity.setCreationDate(new Date());
+                                mMoviesDao.insertMovie(entity);
+                            });
+                }).map(MovieDetailDataMapper::transform);
+    }
+
+
+    @Override
+    public Observable<MovieDetailModel> getLatestMovieDetails() {
+        return mApiMapper.getLatestAddedMovie()
+                .map(MovieEntityMapper::transform)
+                .doOnNext(entity -> {
+                            entity.setRecent(true);
+                            entity.setCreationDate(new Date());
+                            mMoviesDao.insertMovie(entity);
+                        }
+                ).map(MovieDetailDataMapper::transform);
+
+
+
+//
+//        return mMoviesDao.getLatestMovie().toObservable()
+//                .observeOn(Schedulers.computation())
+//                .onErrorResumeNext(throwable -> {
+//                    return mApiMapper.getLatestAddedMovie()
+//                            .map(MovieEntityMapper::transform)
+//                            .doOnNext(entity -> {
+//                                entity.setRecent(true);
+//                                entity.setCreationDate(new Date());
+//                                mMoviesDao.insertMovie(entity);
+//                            });
+//                }).map(MovieDetailDataMapper::transform);
+    }
 }
+

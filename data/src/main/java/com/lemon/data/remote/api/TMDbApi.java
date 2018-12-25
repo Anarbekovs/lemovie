@@ -39,6 +39,20 @@ public interface TMDbApi {
                                         @Query("append_to_response") final String additional);
 
     /**
+     * Perform Api request to get latest movie details
+     *
+     * @param apiVersion - a version of api request
+     * @param key        - a key for api request
+     * @param language   - a language by default
+     * @return {@link Single} of movie details {@link MovieDetail}
+     */
+    @GET("{api_version}/movie/latest")
+    Single<MovieDetail> getLatestMovieDetails(@Path("api_version") final int apiVersion,
+                                              @Query("api_key") final String key,
+                                              @Query("language") final String language,
+                                              @Query("append_to_response") final String additional);
+
+    /**
      * Perform Api request to get tv show details
      *
      * @param apiVersion - a version of api request
@@ -59,9 +73,9 @@ public interface TMDbApi {
      * Perform Api request to get person details
      *
      * @param apiVersion - a version of api request
-     * @param personId - a person id
-     * @param key - a key for api request
-     * @param language - a language by default
+     * @param personId   - a person id
+     * @param key        - a key for api request
+     * @param language   - a language by default
      * @param additional - additional arguments for api request
      * @return {@link Single} of person details {@link PersonDetail}
      */
@@ -76,11 +90,11 @@ public interface TMDbApi {
      * Perform Api request for search movies
      *
      * @param apiVersion - a version of api request
-     * @param key - a key for api request
-     * @param language - a language by default
-     * @param query - a string search query
-     * @param page - a page number
-     * @param isAdult - shows adult contents
+     * @param key        - a key for api request
+     * @param language   - a language by default
+     * @param query      - a string search query
+     * @param page       - a page number
+     * @param isAdult    - shows adult contents
      * @return {@link Single} of movie search results {@link MovieFindResponse}
      */
     @GET("{api_version}/search/movie")
@@ -95,11 +109,11 @@ public interface TMDbApi {
      * Perform Api request for search tv shows
      *
      * @param apiVersion - a version of api request
-     * @param key - a key for api request
-     * @param language - a language by default
-     * @param query - a string search query
-     * @param page - a page number
-     * @param isAdult - shows adult contents
+     * @param key        - a key for api request
+     * @param language   - a language by default
+     * @param query      - a string search query
+     * @param page       - a page number
+     * @param isAdult    - shows adult contents
      * @return {@link Single} of tv show search results {@link TvShowFindResponse}
      */
     @GET("{api_version}/search/tv")
@@ -114,11 +128,11 @@ public interface TMDbApi {
      * Perform Api request for search persons
      *
      * @param apiVersion - a version of api request
-     * @param key - a key for api request
-     * @param language - a language by default
-     * @param query - a string search query
-     * @param page - a page number
-     * @param isAdult - shows adult contents
+     * @param key        - a key for api request
+     * @param language   - a language by default
+     * @param query      - a string search query
+     * @param page       - a page number
+     * @param isAdult    - shows adult contents
      * @return {@link Single} of person search results {@link PersonFindResponse}
      */
     @GET("{api_version}/search/person")
@@ -133,9 +147,9 @@ public interface TMDbApi {
      * Perform Api request to get popular movies
      *
      * @param apiVersion - a version of api request
-     * @param key - a key for api request
-     * @param language - a language by default
-     * @param page - a page number
+     * @param key        - a key for api request
+     * @param language   - a language by default
+     * @param page       - a page number
      * @return {@link Single} of popular movie results {@link MovieFindResponse}
      */
     @GET("{api_version}/movie/popular")
@@ -148,9 +162,9 @@ public interface TMDbApi {
      * Perform Api request to get popular tv shows
      *
      * @param apiVersion - a version of api request
-     * @param key - a key for api request
-     * @param language - a language by default
-     * @param page - a page number
+     * @param key        - a key for api request
+     * @param language   - a language by default
+     * @param page       - a page number
      * @return {@link Single} of popular tv shows results {@link TvShowFindResponse}
      */
     @GET("{api_version}/tv/popular")
@@ -163,9 +177,9 @@ public interface TMDbApi {
      * Perform Api request to get popular persons
      *
      * @param apiVersion - a version of api request
-     * @param key - a key for api request
-     * @param language - a language by default
-     * @param page - a page number
+     * @param key        - a key for api request
+     * @param language   - a language by default
+     * @param page       - a page number
      * @return {@link Single} of popular person results {@link PersonFindResponse}
      */
     @GET("{api_version}/person/popular")

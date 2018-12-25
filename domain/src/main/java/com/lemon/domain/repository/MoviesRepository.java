@@ -108,4 +108,10 @@ public interface MoviesRepository {
      * @return {@link Disposable}
      */
     Disposable deleteMovieFromFavorites(final int movieId);
+    /**
+     * Getting the latest movie details
+     *
+     * @return {@link Observable} of movie details
+     */
+    Observable<MovieDetailModel> getLatestMovieDetails();
 }

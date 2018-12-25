@@ -11,6 +11,8 @@ import com.lemon.domain.usecase.movie.DeleteMovieUseCase;
 import com.lemon.domain.usecase.movie.GetMoviesUseCase;
 
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.inject.Inject;
 
@@ -70,4 +72,6 @@ public final class MoviesPresenter extends BasePresenter<MoviesView> {
         Timber.e("Movies load error: %s", message);
         mView.showToast(message);
     }
+
+
 }
