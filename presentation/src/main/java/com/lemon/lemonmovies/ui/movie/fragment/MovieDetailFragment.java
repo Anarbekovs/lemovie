@@ -101,13 +101,10 @@ public final class MovieDetailFragment extends BaseFragment implements MovieDeta
         fragment.setArguments(args);
         return fragment;
     }
-//   public MovieDetailFragment () {
-//       final int movieId = mPresenter.getRandomMovieId();
-//        final MovieDetailFragment fragment = new MovieDetailFragment();
-//        final Bundle args = new Bundle();
-//        args.putInt(ARG_MOVIE_ID, movieId);
-//        fragment.setArguments(args);
-//    }
+
+    public static Fragment newInstance() {
+        return new MovieDetailFragment();
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -144,11 +141,15 @@ public final class MovieDetailFragment extends BaseFragment implements MovieDeta
     @Override
     public void onStart() {
         super.onStart();
-//        if (mMovieId != 0) {
-//            getMovieDetails();
-//        }
-        mPresenter.getLatestMovieDetails();
+        getMovieDetails();
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
 
     private void initOnPersonClickListener(final Context context) {
         if (context instanceof OnPersonClickListener) {
@@ -184,7 +185,10 @@ public final class MovieDetailFragment extends BaseFragment implements MovieDeta
     }
 
     private void getMovieDetails() {
-        mPresenter.getMovieDetails(mMovieId);
+        if (mMovieId != 0) {
+            mPresenter.getMovieDetails(mMovieId);
+        } else
+            mPresenter.getRandomMovieDetails();
     }
 
     @Override

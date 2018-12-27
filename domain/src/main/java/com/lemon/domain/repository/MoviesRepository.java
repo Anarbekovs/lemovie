@@ -108,10 +108,11 @@ public interface MoviesRepository {
      * @return {@link Disposable}
      */
     Disposable deleteMovieFromFavorites(final int movieId);
+
     /**
-     * Getting the latest movie details
+     * Getting a random movie details
      *
      * @return {@link Observable} of movie details
      */
-    Observable<MovieDetailModel> getLatestMovieDetails();
+    Observable<MovieDetailModel> getRandomMovieDetails();
 }

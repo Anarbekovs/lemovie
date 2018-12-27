@@ -17,7 +17,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -30,6 +29,7 @@ public final class MoviesRepositoryImpl implements MoviesRepository {
 
     private final MoviesDAO mMoviesDao;
     private final ApiMapper mApiMapper;
+    private int randomId;
 
     @Inject
     public MoviesRepositoryImpl(final MoviesDAO moviesDAO, final ApiMapper apiMapper) {
@@ -166,30 +166,15 @@ public final class MoviesRepositoryImpl implements MoviesRepository {
 
 
     @Override
-    public Observable<MovieDetailModel> getLatestMovieDetails() {
-        return mApiMapper.getLatestAddedMovie()
+    public Observable<MovieDetailModel> getRandomMovieDetails() {
+        return mApiMapper.getRandomMovie()
                 .map(MovieEntityMapper::transform)
-                .doOnNext(entity -> {
-                            entity.setRecent(true);
-                            entity.setCreationDate(new Date());
-                            mMoviesDao.insertMovie(entity);
-                        }
-                ).map(MovieDetailDataMapper::transform);
-
-
-
-//
-//        return mMoviesDao.getLatestMovie().toObservable()
-//                .observeOn(Schedulers.computation())
-//                .onErrorResumeNext(throwable -> {
-//                    return mApiMapper.getLatestAddedMovie()
-//                            .map(MovieEntityMapper::transform)
-//                            .doOnNext(entity -> {
-//                                entity.setRecent(true);
-//                                entity.setCreationDate(new Date());
-//                                mMoviesDao.insertMovie(entity);
-//                            });
-//                }).map(MovieDetailDataMapper::transform);
+//                .doOnNext(entity -> {
+//                            entity.setRecent(true);
+//                            entity.setCreationDate(new Date());
+//                            mMoviesDao.insertMovie(entity);
+//                        })
+                .map(MovieDetailDataMapper::transform);
     }
-}
 
+}

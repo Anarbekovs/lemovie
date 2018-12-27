@@ -1,5 +1,8 @@
 package com.lemon.lemonmovies.ui.movie.presenter;
 
+import android.util.Log;
+
+import com.lemon.domain.model.detail.MovieDetailModel;
 import com.lemon.lemonmovies.di.scope.MoviesScope;
 import com.lemon.lemonmovies.mapper.MovieDetailDataModelMapper;
 import com.lemon.lemonmovies.model.detail.MovieDetailDataModel;
@@ -16,6 +19,7 @@ import java.util.Random;
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -26,6 +30,7 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
     private final SetMovieRatingUseCase mSetMovieRatingUseCase;
     private final AddMovieUseCase mAddMovieUseCase;
     private final DeleteMovieUseCase mDeleteMovieUseCase;
+    private int randomId;
 
     @Inject
     public MovieDetailPresenter(final GetMovieDetailsUseCase getMovieDetailsUseCase,
@@ -47,7 +52,7 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
                         throwable -> showErrorMessage(throwable.getLocalizedMessage())));
     }
 
-    public void getLatestMovieDetails() {
+    public void getRandomMovieDetails() {
         addDisposable(mGetMovieDetailsUseCase.execute()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -93,8 +98,5 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
         Timber.e("Movie details load error: %s", message);
         mView.showToast(message);
     }
-    public int getRandomMovieId() {
-        Random rand = new Random();
-        return rand.nextInt(320);
-    }
+
 }

@@ -1,5 +1,9 @@
 package com.lemon.data.remote.api;
 
+import android.util.Log;
+
+import com.lemon.data.R;
+import com.lemon.data.mapper.MovieResultDataMapper;
 import com.lemon.data.remote.pojo.movie.detail.MovieDetail;
 import com.lemon.data.remote.pojo.movie.find.MovieFindResponse;
 import com.lemon.data.remote.pojo.movie.find.MovieResult;
@@ -12,8 +16,17 @@ import com.lemon.data.remote.pojo.tvshow.find.TvShowResult;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -116,7 +129,8 @@ public final class ApiMapper {
      * @return {@link Observable} of popular movie results list
      */
     public Observable<List<MovieResult>> getPopularMovies(final int page) {
-        return mApiService.getPopularMovies(ApiConstants.API_VERSION, ApiConstants.API_KEY, ApiConstants.LANGUAGE, page)
+        return mApiService.getPopularMovies(ApiConstants.API_VERSION, ApiConstants.API_KEY,
+                ApiConstants.LANGUAGE, page, ApiConstants.REGION)
                 .observeOn(Schedulers.computation())
                 .map(MovieFindResponse::getResults)
                 .toObservable();
@@ -150,14 +164,20 @@ public final class ApiMapper {
 
 
     /**
-     * Request latest added movie
+     * Request random  movie
      *
      * @return {@link Observable} of one movie
      */
-    public Observable<MovieDetail> getLatestAddedMovie() {
-        return mApiService.getLatestMovieDetails(ApiConstants.API_VERSION, ApiConstants.API_KEY,
-                ApiConstants.LANGUAGE, ApiConstants.MOVIE_REQUEST_APPEND)
-                .toObservable();
+    public Observable<MovieDetail> getRandomMovie() {
+        Random rand = new Random();
+        int page = rand.nextInt(200) + 1;
+
+        return mApiService.getPopularMovies(ApiConstants.API_VERSION, ApiConstants.API_KEY,
+                ApiConstants.LANGUAGE, page,ApiConstants.REGION)
+                .observeOn(Schedulers.computation())
+                .subscribeOn(Schedulers.computation())
+                .map(MovieFindResponse::getResults)
+                .flatMapObservable(movieResults -> getMovieDetails(movieResults.get(0).getId()));
     }
 
     /**
@@ -169,6 +189,7 @@ public final class ApiMapper {
         private static final int API_VERSION = 3;
         private static final boolean IS_ADULT_ENABLED = false;
         private static final String LANGUAGE = Locale.getDefault().getLanguage();
+        private static final String REGION = Locale.getDefault().getCountry();
         private static final String MOVIE_REQUEST_APPEND = "images,credits";
         private static final String TV_SHOW_REQUEST_APPEND = "images,credits";
         private static final String PERSON_REQUEST_APPEND = "movie_credits,tv_credits";

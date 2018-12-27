@@ -83,7 +83,7 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
 
         if (fragment == null) {
             fm.beginTransaction()
-                    .add(R.id.frame_movie,MovieDetailFragment.newInstance(570642), MoviesFragment.TAG)
+                    .add(R.id.frame_movie, MovieDetailFragment.newInstance(), MovieDetailFragment.TAG)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
@@ -107,8 +107,10 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
                 getNavigator().navigateToMovieSearchScreen(this);
                 break;
             case R.id.fab_swap_movie:
-                //TODO
-                //swap function
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.frame_movie, MovieDetailFragment.newInstance(), MovieDetailFragment.TAG)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit();
                 break;
         }
     }

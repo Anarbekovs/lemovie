@@ -24,6 +24,7 @@ public final class GetMovieDetailsUseCase {
     }
 
     public Observable<MovieDetailModel> execute() {
-        return mMoviesRepository.getLatestMovieDetails();
+        return mMoviesRepository.getRandomMovieDetails();
     }
+
 }
