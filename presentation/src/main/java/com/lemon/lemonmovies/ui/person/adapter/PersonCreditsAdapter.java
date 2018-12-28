@@ -51,7 +51,7 @@ public final class PersonCreditsAdapter extends RecyclerView.Adapter<PersonCredi
                 .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.color.color_image_placeholder)
+                .error(R.drawable.person)
                 .into(holder.mPersonPhotoImageView);
     }
 

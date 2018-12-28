@@ -48,7 +48,7 @@ public final class PersonsResultAdapter extends RecyclerView.Adapter<PersonsResu
                 .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.color.color_image_placeholder)
+                .error(R.drawable.person)
                 .into(holder.mPersonPhotoImageView);
     }
 

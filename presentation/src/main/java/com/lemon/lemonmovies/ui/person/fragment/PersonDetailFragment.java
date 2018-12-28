@@ -234,6 +234,7 @@ public final class PersonDetailFragment extends BaseFragment implements PersonDe
     private void loadPersonPhoto(final String posterUrl, final String previewPosterUrl) {
         GlideApp.with(this)
                 .load(posterUrl)
+                .error(R.drawable.person)
                 .thumbnail(GlideApp.with(this).load(previewPosterUrl))
                 .centerInside()
                 .transition(DrawableTransitionOptions.withCrossFade(CatchMovieGlideModule.CROSS_FADE_DURATION))

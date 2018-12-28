@@ -49,7 +49,7 @@ public final class PersonsActivity extends NavigationBaseActivity implements OnP
     @Override
     protected void onResume() {
         super.onResume();
-        setTitle(R.string.app_title_persons);
+        setTitle(R.string.app_title_person);
     }
 
     @Override

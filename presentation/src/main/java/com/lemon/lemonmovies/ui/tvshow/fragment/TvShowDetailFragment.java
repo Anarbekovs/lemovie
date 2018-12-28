@@ -273,6 +273,7 @@ public final class TvShowDetailFragment extends BaseFragment implements TvShowDe
     private void loadTvShowPoster(final String posterUrl, final String previewPosterUrl) {
         GlideApp.with(this)
                 .load(posterUrl)
+                .error(R.drawable.ic_live_tv_white_240dp)
                 .thumbnail(GlideApp.with(this).load(previewPosterUrl))
                 .centerInside()
                 .transition(DrawableTransitionOptions.withCrossFade(CatchMovieGlideModule.CROSS_FADE_DURATION))

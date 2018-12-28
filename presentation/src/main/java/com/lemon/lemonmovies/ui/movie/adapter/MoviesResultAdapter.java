@@ -48,7 +48,7 @@ public final class MoviesResultAdapter extends RecyclerView.Adapter<MoviesResult
                 .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.color.color_image_placeholder)
+                .error(R.drawable.ic_local_movies_white_240dp)
                 .into(holder.mPosterImageView);
     }
 

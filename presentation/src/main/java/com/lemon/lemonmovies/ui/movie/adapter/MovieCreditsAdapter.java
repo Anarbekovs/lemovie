@@ -51,7 +51,7 @@ public final class MovieCreditsAdapter extends RecyclerView.Adapter<MovieCredits
                 .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.color.color_image_placeholder)
+                .error(R.drawable.ic_local_movies_white_240dp)
                 .into(holder.mPosterImageView);
     }
 

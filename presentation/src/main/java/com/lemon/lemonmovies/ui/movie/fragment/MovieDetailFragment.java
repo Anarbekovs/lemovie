@@ -281,6 +281,7 @@ public final class MovieDetailFragment extends BaseFragment implements MovieDeta
     private void loadMoviePoster(final String posterUrl, final String previewPosterUrl) {
         GlideApp.with(this)
                 .load(posterUrl)
+                .error(R.drawable.ic_local_movies_white_240dp)
                 .thumbnail(GlideApp.with(this).load(previewPosterUrl))
                 .centerInside()
                 .transition(DrawableTransitionOptions.withCrossFade(CatchMovieGlideModule.CROSS_FADE_DURATION))

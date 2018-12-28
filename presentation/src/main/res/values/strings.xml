@@ -5,7 +5,7 @@
     <string name="app_title">Lemon Movies</string>
     <string name="app_title_movies">Movies</string>
     <string name="app_title_tv_shows">TV Shows</string>
-    <string name="app_title_persons">Persons</string>
+    <string name="app_title_person">Person</string>
     <string name="app_title_settings">Settings</string>
     <string name="app_title_search">Recent search</string>
     <string name="app_favorites_people">Favorite</string>
@@ -13,7 +13,7 @@
     <!--Navigation Drawer-->
     <string name="nav_title_movies">Movies</string>
     <string name="nav_title_tv_shows">TV Shows</string>
-    <string name="nav_title_persons">Persons</string>
+    <string name="nav_title_person">Person</string>
     <string name="nav_title_watchlist">Watchlist</string>
     <string name="nav_title_favorites">Favorites</string>
     <string name="nav_title_contact">Contact Developer</string>
@@ -33,13 +33,13 @@
     <string name="text_empty_tv_shows_favorites">Your favorite TV shows list is empty</string>
 
     <!--Actors Empty Text-->
-    <string name="text_empty_persons">Your favorite persons list is empty</string>
+    <string name="text_empty_person">Your favorite person list is empty</string>
 
     <!--Search-->
     <string name="hint_search">Search…</string>
     <string name="text_empty_search_movies">Movies not found</string>
     <string name="text_empty_search_tv_shows">TV shows not found</string>
-    <string name="text_empty_search_persons">People were not found</string>
+    <string name="text_empty_search_person">People were not found</string>
 
     <!--Errors-->
     <string name="text_exception_no_listener_impl">Activity must implement Listener interface</string>
