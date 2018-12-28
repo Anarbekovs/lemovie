@@ -22,13 +22,12 @@
 
         <item
             android:id="@+id/nav_item_watchlist"
-            android:checked='true'
-            android:icon="@drawable/ic_local_movies_white_24dp"
+            android:icon="@drawable/ic_watchlist_checked_24dp"
             android:title="@string/nav_title_watchlist"/>
 
         <item
             android:id="@+id/nav_item_favorites"
-            android:icon="@drawable/ic_live_tv_white_24dp"
+            android:icon="@drawable/ic_favorite_checked_24dp"
             android:title="@string/nav_title_favorites"/>
 
     </group>

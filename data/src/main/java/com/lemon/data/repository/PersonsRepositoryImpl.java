@@ -58,8 +58,8 @@ public final class PersonsRepositoryImpl implements PersonsRepository {
     }
 
     @Override
-    public Observable<List<PersonResultModel>> getPopularPersons(final int page) {
-        return mApiMapper.getPopularPersons(page)
+    public Observable<List<PersonResultModel>> getPopularPersons() {
+        return mApiMapper.getPopularPersons()
                 .map(PersonResultDataMapper::transform);
     }
 

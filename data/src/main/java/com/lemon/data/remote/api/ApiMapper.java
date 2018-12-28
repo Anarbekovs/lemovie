@@ -1,9 +1,5 @@
 package com.lemon.data.remote.api;
 
-import android.util.Log;
-
-import com.lemon.data.R;
-import com.lemon.data.mapper.MovieResultDataMapper;
 import com.lemon.data.remote.pojo.movie.detail.MovieDetail;
 import com.lemon.data.remote.pojo.movie.find.MovieFindResponse;
 import com.lemon.data.remote.pojo.movie.find.MovieResult;
@@ -19,14 +15,6 @@ import java.util.Locale;
 import java.util.Random;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.Observer;
-import io.reactivex.Single;
-import io.reactivex.SingleObserver;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -39,6 +27,8 @@ public final class ApiMapper {
     public ApiMapper(final TMDbApi apiService) {
         this.mApiService = apiService;
     }
+
+    private final Random rand = new Random();
 
     /**
      * Request movie details by movie id
@@ -129,6 +119,7 @@ public final class ApiMapper {
      * @return {@link Observable} of popular movie results list
      */
     public Observable<List<MovieResult>> getPopularMovies(final int page) {
+
         return mApiService.getPopularMovies(ApiConstants.API_VERSION, ApiConstants.API_KEY,
                 ApiConstants.LANGUAGE, page, ApiConstants.REGION)
                 .observeOn(Schedulers.computation())
@@ -143,7 +134,8 @@ public final class ApiMapper {
      * @return {@link Observable} of popular tv show results list
      */
     public Observable<List<TvShowResult>> getPopularTvShows(final int page) {
-        return mApiService.getPopularTvShows(ApiConstants.API_VERSION, ApiConstants.API_KEY, ApiConstants.LANGUAGE, page)
+        return mApiService.getPopularTvShows(ApiConstants.API_VERSION, ApiConstants.API_KEY,
+                ApiConstants.LANGUAGE,page,ApiConstants.REGION)
                 .observeOn(Schedulers.computation())
                 .map(TvShowFindResponse::getResults)
                 .toObservable();
@@ -152,10 +144,10 @@ public final class ApiMapper {
     /**
      * Request popular persons
      *
-     * @param page - a page number
      * @return {@link Observable} of popular person results list
      */
-    public Observable<List<PersonResult>> getPopularPersons(final int page) {
+    public Observable<List<PersonResult>> getPopularPersons() {
+        int page = rand.nextInt(300) + 1;
         return mApiService.getPopularPersons(ApiConstants.API_VERSION, ApiConstants.API_KEY, ApiConstants.LANGUAGE, page)
                 .observeOn(Schedulers.computation())
                 .map(PersonFindResponse::getResults)
@@ -169,8 +161,7 @@ public final class ApiMapper {
      * @return {@link Observable} of one movie
      */
     public Observable<MovieDetail> getRandomMovie() {
-        Random rand = new Random();
-        int page = rand.nextInt(200) + 1;
+        int page = rand.nextInt(300) + 1;
 
         return mApiService.getPopularMovies(ApiConstants.API_VERSION, ApiConstants.API_KEY,
                 ApiConstants.LANGUAGE, page,ApiConstants.REGION)
@@ -178,6 +169,22 @@ public final class ApiMapper {
                 .subscribeOn(Schedulers.computation())
                 .map(MovieFindResponse::getResults)
                 .flatMapObservable(movieResults -> getMovieDetails(movieResults.get(0).getId()));
+    }
+
+    /**
+     * Request random tv show.
+     *
+     * @return {@link Observable} of one tv show.
+     */
+    public Observable<TvShowDetail> getRandomTvShow() {
+        int page = rand.nextInt(300) + 1;
+
+        return mApiService.getPopularTvShows(ApiConstants.API_VERSION, ApiConstants.API_KEY,
+                ApiConstants.LANGUAGE, page,ApiConstants.REGION)
+                .observeOn(Schedulers.computation())
+                .subscribeOn(Schedulers.computation())
+                .map(TvShowFindResponse::getResults)
+                .flatMapObservable(tvShowResults -> getTvShowDetails(tvShowResults.get(0).getId()));
     }
 
     /**

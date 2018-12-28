@@ -1,6 +1,7 @@
 package com.lemon.data.repository;
 
 import com.lemon.data.local.database.dao.TvShowsDAO;
+import com.lemon.data.mapper.MovieEntityMapper;
 import com.lemon.data.mapper.TvShowDetailDataMapper;
 import com.lemon.data.mapper.TvShowEntityMapper;
 import com.lemon.data.mapper.TvShowItemDataMapper;
@@ -100,9 +101,13 @@ public final class TvShowsRepositoryImpl implements TvShowsRepository {
         return mTvShowsDao.getTvShowById(tvShowId).toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
-                .doOnNext(entity -> {
-                    entity.setWatchlist(true);
-                    mTvShowsDao.updateTvShow(entity);
+                .onErrorResumeNext(throwable -> {
+                    return mApiMapper.getTvShowDetails(tvShowId)
+                            .map(TvShowEntityMapper::transform)
+                            .doOnNext(entity -> {
+                                entity.setWatchlist(true);
+                                mTvShowsDao.insertTvShow(entity);
+                            });
                 }).subscribe();
     }
 
@@ -111,9 +116,13 @@ public final class TvShowsRepositoryImpl implements TvShowsRepository {
         return mTvShowsDao.getTvShowById(tvShowId).toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
-                .doOnNext(entity -> {
-                    entity.setFavorite(true);
-                    mTvShowsDao.updateTvShow(entity);
+                .onErrorResumeNext(throwable -> {
+                    return mApiMapper.getTvShowDetails(tvShowId)
+                            .map(TvShowEntityMapper::transform)
+                            .doOnNext(entity -> {
+                                entity.setFavorite(true);
+                                mTvShowsDao.insertTvShow(entity);
+                            });
                 }).subscribe();
     }
 
@@ -160,5 +169,12 @@ public final class TvShowsRepositoryImpl implements TvShowsRepository {
                         mTvShowsDao.updateTvShow(entity);
                     }
                 }).subscribe();
+    }
+
+    @Override
+    public Observable<TvShowDetailModel> getRandomTvShowDetails() {
+        return mApiMapper.getRandomTvShow()
+                .map(TvShowEntityMapper::transform)
+                .map(TvShowDetailDataMapper::transform);
     }
 }

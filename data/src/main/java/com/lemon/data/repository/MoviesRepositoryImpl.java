@@ -1,5 +1,7 @@
 package com.lemon.data.repository;
 
+import android.util.Log;
+
 import com.lemon.data.local.database.dao.MoviesDAO;
 import com.lemon.data.mapper.MovieDetailDataMapper;
 import com.lemon.data.mapper.MovieEntityMapper;
@@ -29,7 +31,6 @@ public final class MoviesRepositoryImpl implements MoviesRepository {
 
     private final MoviesDAO mMoviesDao;
     private final ApiMapper mApiMapper;
-    private int randomId;
 
     @Inject
     public MoviesRepositoryImpl(final MoviesDAO moviesDAO, final ApiMapper apiMapper) {
@@ -87,9 +88,13 @@ public final class MoviesRepositoryImpl implements MoviesRepository {
         return mMoviesDao.getMovieById(movieId).toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
-                .doOnNext(entity -> {
-                    entity.setWatchlist(true);
-                    mMoviesDao.updateMovie(entity);
+                .onErrorResumeNext(throwable -> {
+                    return mApiMapper.getMovieDetails(movieId)
+                            .map(MovieEntityMapper::transform)
+                            .doOnNext(entity -> {
+                                entity.setWatchlist(true);
+                                mMoviesDao.insertMovie(entity);
+                            });
                 }).subscribe();
     }
 
@@ -98,9 +103,13 @@ public final class MoviesRepositoryImpl implements MoviesRepository {
         return mMoviesDao.getMovieById(movieId).toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
-                .doOnNext(entity -> {
-                    entity.setFavorite(true);
-                    mMoviesDao.updateMovie(entity);
+                .onErrorResumeNext(throwable -> {
+                    return mApiMapper.getMovieDetails(movieId)
+                            .map(MovieEntityMapper::transform)
+                            .doOnNext(entity -> {
+                                entity.setFavorite(true);
+                                mMoviesDao.insertMovie(entity);
+                            });
                 }).subscribe();
     }
 
@@ -169,11 +178,6 @@ public final class MoviesRepositoryImpl implements MoviesRepository {
     public Observable<MovieDetailModel> getRandomMovieDetails() {
         return mApiMapper.getRandomMovie()
                 .map(MovieEntityMapper::transform)
-//                .doOnNext(entity -> {
-//                            entity.setRecent(true);
-//                            entity.setCreationDate(new Date());
-//                            mMoviesDao.insertMovie(entity);
-//                        })
                 .map(MovieDetailDataMapper::transform);
     }
 

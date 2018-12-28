@@ -101,4 +101,10 @@ public interface TvShowsRepository {
      * @return {@link Disposable}
      */
     Disposable deleteTvShowFromFavorites(final int tvShowId);
+    /**
+     * Getting a random tv show details
+     *
+     * @return {@link Observable} of movie details
+     */
+    Observable<TvShowDetailModel> getRandomTvShowDetails();
 }

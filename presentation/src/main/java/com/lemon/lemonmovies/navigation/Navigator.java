@@ -4,14 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentTransaction;
 
-import com.lemon.domain.types.MovieType;
 import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.ui.movie.activity.MovieDetailActivity;
 import com.lemon.lemonmovies.ui.movie.activity.MoviesActivity;
 import com.lemon.lemonmovies.ui.movie.activity.MoviesSearchActivity;
-import com.lemon.lemonmovies.ui.movie.fragment.MoviesFragment;
 import com.lemon.lemonmovies.ui.person.activity.PersonDetailActivity;
 import com.lemon.lemonmovies.ui.person.activity.PersonsActivity;
 import com.lemon.lemonmovies.ui.person.activity.PersonsSearchActivity;
@@ -163,7 +160,12 @@ public final class Navigator {
      * @param context - a calling component context
      */
     public void navigateToMarketAppRating(@NonNull final Context context) {
-        //Not implemented yet
+        final String appPackageName = "com.kyrgyz.radio";
+        try {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+        }
     }
 
 

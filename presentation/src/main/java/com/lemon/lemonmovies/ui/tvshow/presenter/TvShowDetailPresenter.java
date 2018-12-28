@@ -24,6 +24,7 @@ public final class TvShowDetailPresenter extends BasePresenter<TvShowDetailView>
     private final SetTvShowRatingUseCase mSetTvShowRatingUseCase;
     private final AddTvShowUseCase mAddTvShowUseCase;
     private final DeleteTvShowUseCase mDeleteTvShowUseCase;
+    private int randomTvShowId;
 
     @Inject
     public TvShowDetailPresenter(final GetTvShowDetailsUseCase getTvShowDetailsUseCase,
@@ -45,6 +46,16 @@ public final class TvShowDetailPresenter extends BasePresenter<TvShowDetailView>
                         throwable -> showErrorMessage(throwable.getLocalizedMessage())));
     }
 
+    public void getRandomTvShowDetails() {
+        addDisposable(mGetTvShowDetailsUseCase.execute()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(TvShowDetailDataModelMapper::transform)
+                .doOnNext(tvShowDetailDataModel -> randomTvShowId = tvShowDetailDataModel.getTvShowId())
+                .subscribe(this::setTvShowDetails,
+                        throwable -> showErrorMessage(throwable.getLocalizedMessage())));
+    }
+
     public void setTvShowRating(final int tvShowId, final double rating) {
         addDisposable(mSetTvShowRatingUseCase.execute(tvShowId, rating));
     }
@@ -54,8 +65,18 @@ public final class TvShowDetailPresenter extends BasePresenter<TvShowDetailView>
         mView.setWatchlistStatus(true);
     }
 
+    public void addToWatchlist() {
+        addDisposable(mAddTvShowUseCase.execute(randomTvShowId, TvShowType.WATCHLIST));
+        mView.setWatchlistStatus(true);
+    }
+
     public void deleteFromWatchlist(final int tvShowId) {
         addDisposable(mDeleteTvShowUseCase.execute(tvShowId, TvShowType.WATCHLIST));
+        mView.setWatchlistStatus(false);
+    }
+
+    public void deleteFromWatchlist() {
+        addDisposable(mDeleteTvShowUseCase.execute(randomTvShowId, TvShowType.WATCHLIST));
         mView.setWatchlistStatus(false);
     }
 
@@ -64,8 +85,18 @@ public final class TvShowDetailPresenter extends BasePresenter<TvShowDetailView>
         mView.setFavoriteStatus(true);
     }
 
+    public void addToFavorites() {
+        addDisposable(mAddTvShowUseCase.execute(randomTvShowId, TvShowType.FAVORITE));
+        mView.setFavoriteStatus(true);
+    }
+
     public void deleteFromFavorites(final int tvShowId) {
         addDisposable(mDeleteTvShowUseCase.execute(tvShowId, TvShowType.FAVORITE));
+        mView.setFavoriteStatus(false);
+    }
+
+    public void deleteFromFavorites() {
+        addDisposable(mDeleteTvShowUseCase.execute(randomTvShowId, TvShowType.FAVORITE));
         mView.setFavoriteStatus(false);
     }
 
@@ -80,6 +111,6 @@ public final class TvShowDetailPresenter extends BasePresenter<TvShowDetailView>
 
     private void showErrorMessage(final String message) {
         Timber.e("TV details load error: %s", message);
-        mView.showToast(message);
+        mView.showSnackbar(message);
     }
 }

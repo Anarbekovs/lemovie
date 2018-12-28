@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_view_main"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_gravity="start"
-    android:background="@color/color_nav_background"
-    android:fitsSystemWindows="true"
-    android:theme="@style/ThemeOverlay.AppCompat.NavigationView"
-    app:headerLayout="@layout/nav_drawer_header"
-    app:itemIconTint="@color/color_nav_item_text"
-    app:itemTextColor="@color/color_nav_item_text"
-    app:menu="@menu/menu_navigation" />
+                                              xmlns:app="http://schemas.android.com/apk/res-auto"
+                                              android:id="@+id/nav_view_main"
+                                              android:layout_width="wrap_content"
+                                              android:layout_height="match_parent"
+                                              android:layout_gravity="start"
+                                              android:background="@color/color_nav_background"
+                                              android:fitsSystemWindows="true"
+                                              android:theme="@style/ThemeOverlay.AppCompat.NavigationView"
+                                              app:headerLayout="@layout/nav_drawer_header"
+                                              app:itemBackground="@android:color/transparent"
+                                              app:itemIconTint="@animator/drawer_item"
+                                              app:itemTextColor="@animator/drawer_item"
+                                              app:menu="@menu/menu_navigation"/>
+
+

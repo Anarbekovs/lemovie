@@ -172,7 +172,8 @@ public interface TMDbApi {
     Single<TvShowFindResponse> getPopularTvShows(@Path("api_version") final int apiVersion,
                                                  @Query("api_key") final String key,
                                                  @Query("language") final String language,
-                                                 @Query("page") final int page);
+                                                 @Query("page") final int page,
+                                                 @Query("region") final String region);
 
     /**
      * Perform Api request to get popular persons

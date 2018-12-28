@@ -10,11 +10,9 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.lemon.domain.types.MovieType;
 import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.listener.OnPersonClickListener;
 import com.lemon.lemonmovies.ui.base.BaseActivity;
-import com.lemon.lemonmovies.ui.movie.fragment.MoviesFragment;
 import com.lemon.lemonmovies.ui.person.fragment.PersonsFragment;
 import com.lemon.lemonmovies.ui.person.fragment.PersonsPopularFragment;
 import com.lemon.lemonmovies.ui.person.fragment.PersonsSearchFragment;

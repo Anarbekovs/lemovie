@@ -61,6 +61,6 @@ public final class PersonDetailPresenter extends BasePresenter<PersonDetailView>
 
     private void showErrorMessage(final String message) {
         Timber.e("PersonDetail details load error: %s", message);
-        mView.showToast(message);
+        mView.showSnackbar(message);
     }
 }

@@ -5,13 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.lemon.lemonmovies.R;
+import com.lemon.lemonmovies.listener.OnPersonClickListener;
 import com.lemon.lemonmovies.listener.OnTvShowClickListener;
 import com.lemon.lemonmovies.ui.base.NavigationBaseActivity;
+import com.lemon.lemonmovies.ui.tvshow.fragment.TvShowDetailFragment;
 import com.lemon.lemonmovies.ui.tvshow.fragment.TvShowsFragment;
 
 import butterknife.BindView;
@@ -25,7 +30,7 @@ import butterknife.OnClick;
  * @see OnTvShowClickListener
  * @see TvShowsFragment
  */
-public final class TvShowsActivity extends NavigationBaseActivity implements OnTvShowClickListener {
+public final class TvShowsActivity extends NavigationBaseActivity implements OnTvShowClickListener,OnPersonClickListener {
 
     @BindView(R.id.fab_find_tv_show)
     FloatingActionButton mFloatingButtonFindTvShow;
@@ -43,6 +48,7 @@ public final class TvShowsActivity extends NavigationBaseActivity implements OnT
         setContentView(R.layout.activity_tv_shows);
         ButterKnife.bind(this);
         super.setupDrawer();
+        initUI();
     }
 
     @Override
@@ -69,9 +75,26 @@ public final class TvShowsActivity extends NavigationBaseActivity implements OnT
         }
     }
 
+    private void initUI() {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.frame_tv_shows);
+
+        if (fragment == null) {
+            fm.beginTransaction()
+                    .add(R.id.frame_tv_shows, TvShowDetailFragment.newInstance(), TvShowDetailFragment.TAG)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+        }
+    }
+
     @Override
     public void onTvShowClick(int tvShowId) {
         getNavigator().navigateToTvShowDetailScreen(this, tvShowId);
+    }
+
+    @Override
+    public void onPersonClick(final int personId) {
+        getNavigator().navigateToPersonDetailScreen(this, personId);
     }
 
     @OnClick({R.id.fab_find_tv_show, R.id.fab_swap_tv_swows})
@@ -81,6 +104,10 @@ public final class TvShowsActivity extends NavigationBaseActivity implements OnT
                 mFloatingButtonFindTvShow.setOnClickListener(v -> getNavigator().navigateToTvShowSearchScreen(this));
                 break;
             case R.id.fab_swap_tv_swows:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_tv_shows, TvShowDetailFragment.newInstance(), TvShowDetailFragment.TAG)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit();
                 break;
         }
     }

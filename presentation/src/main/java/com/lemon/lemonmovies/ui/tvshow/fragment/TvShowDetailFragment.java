@@ -100,6 +100,11 @@ public final class TvShowDetailFragment extends BaseFragment implements TvShowDe
         return fragment;
     }
 
+    public static Fragment newInstance() {
+        return new TvShowDetailFragment();
+    }
+
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -135,9 +140,7 @@ public final class TvShowDetailFragment extends BaseFragment implements TvShowDe
     @Override
     public void onStart() {
         super.onStart();
-        if (mTvShowId != 0) {
             getTvShowDetails();
-        }
     }
 
     private void initOnPersonClickListener(final Context context) {
@@ -174,8 +177,11 @@ public final class TvShowDetailFragment extends BaseFragment implements TvShowDe
     }
 
     private void getTvShowDetails() {
-        mPresenter.getTvShowDetails(mTvShowId);
-    }
+            if (mTvShowId != 0) {
+                mPresenter.getTvShowDetails(mTvShowId);
+            } else
+                mPresenter.getRandomTvShowDetails();
+        }
 
     @Override
     public void setTvShowDetails(final TvShowDetailDataModel tvShow) {
@@ -234,23 +240,29 @@ public final class TvShowDetailFragment extends BaseFragment implements TvShowDe
 
     @OnClick({R.id.detail_tv_show_rating_logo, R.id.detail_tv_show_rating})
     void onRatingClick() {
-        this.performRatingClick();
+   //     this.performRatingClick();
     }
 
     private void performWatchlistClick() {
-        if (!mWatchlist) {
+        if (!mWatchlist && mTvShowId != 0)
             mPresenter.addToWatchlist(mTvShowId);
-        } else {
+        else if (!mWatchlist)
+            mPresenter.addToWatchlist();
+        else if (mTvShowId != 0)
             mPresenter.deleteFromWatchlist(mTvShowId);
-        }
+        else
+            mPresenter.deleteFromWatchlist();
     }
 
     private void performFavoriteClick() {
-        if (!mFavorite) {
+        if (!mFavorite && mTvShowId != 0)
             mPresenter.addToFavorites(mTvShowId);
-        } else {
+        else if (!mFavorite)
+            mPresenter.addToFavorites();
+        else if (mTvShowId != 0)
             mPresenter.deleteFromFavorites(mTvShowId);
-        }
+        else
+            mPresenter.deleteFromFavorites();
     }
 
     private void performRatingClick() {

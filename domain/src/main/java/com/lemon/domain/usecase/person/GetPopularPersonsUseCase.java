@@ -21,7 +21,7 @@ public final class GetPopularPersonsUseCase {
         this.mPersonsRepository = personsRepository;
     }
 
-    public Observable<List<PersonResultModel>> execute(final int page) {
-        return mPersonsRepository.getPopularPersons(page);
+    public Observable<List<PersonResultModel>> execute() {
+        return mPersonsRepository.getPopularPersons();
     }
 }

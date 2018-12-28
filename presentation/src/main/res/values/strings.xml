@@ -37,9 +37,9 @@
 
     <!--Search-->
     <string name="hint_search">Search…</string>
-    <string name="text_empty_search_movies">Movies wasn\'t found</string>
-    <string name="text_empty_search_tv_shows">TV shows wasn\'t found</string>
-    <string name="text_empty_search_persons">Persons wasn\'t found</string>
+    <string name="text_empty_search_movies">Movies not found</string>
+    <string name="text_empty_search_tv_shows">TV shows not found</string>
+    <string name="text_empty_search_persons">People were not found</string>
 
     <!--Errors-->
     <string name="text_exception_no_listener_impl">Activity must implement Listener interface</string>
@@ -64,8 +64,8 @@
     </string-array>
 
     <!--Mail-->
-    <string name="mail_address">test@gmail.com</string>
-    <string name="mail_subject">Feedback: Catch Movie (version %s)</string>
+    <string name="mail_address">jumushuchun@gmail.com</string>
+    <string name="mail_subject">Feedback: Lemon Movies (version %s)</string>
     <string name="mail_body">Device: %s\nBuild: %s\nVersion: %s\n\nMessage:\u0020\u0013</string>
     <string name="mail_chooser_text">Choose app:</string>
 

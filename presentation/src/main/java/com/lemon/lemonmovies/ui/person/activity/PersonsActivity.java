@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.listener.OnMovieClickListener;
 import com.lemon.lemonmovies.listener.OnPersonClickListener;
-import com.lemon.lemonmovies.listener.OnTvShowClickListener;
 import com.lemon.lemonmovies.ui.base.NavigationBaseActivity;
 import com.lemon.lemonmovies.ui.person.fragment.PersonsFragment;
 import com.lemon.lemonmovies.ui.person.fragment.PersonsPopularFragment;

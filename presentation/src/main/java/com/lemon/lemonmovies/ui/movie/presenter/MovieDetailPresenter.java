@@ -1,8 +1,6 @@
 package com.lemon.lemonmovies.ui.movie.presenter;
 
-import android.util.Log;
 
-import com.lemon.domain.model.detail.MovieDetailModel;
 import com.lemon.lemonmovies.di.scope.MoviesScope;
 import com.lemon.lemonmovies.mapper.MovieDetailDataModelMapper;
 import com.lemon.lemonmovies.model.detail.MovieDetailDataModel;
@@ -14,12 +12,10 @@ import com.lemon.domain.usecase.movie.DeleteMovieUseCase;
 import com.lemon.domain.usecase.movie.GetMovieDetailsUseCase;
 import com.lemon.domain.usecase.movie.SetMovieRatingUseCase;
 
-import java.util.Random;
 
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -30,7 +26,7 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
     private final SetMovieRatingUseCase mSetMovieRatingUseCase;
     private final AddMovieUseCase mAddMovieUseCase;
     private final DeleteMovieUseCase mDeleteMovieUseCase;
-    private int randomId;
+    private int randomMovieId;
 
     @Inject
     public MovieDetailPresenter(final GetMovieDetailsUseCase getMovieDetailsUseCase,
@@ -57,6 +53,7 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(MovieDetailDataModelMapper::transform)
+                .doOnNext(movieDetailDataModel -> randomMovieId = movieDetailDataModel.getMovieId())
                 .subscribe(this::setMovieDetails,
                         throwable -> showErrorMessage(throwable.getLocalizedMessage())));
     }
@@ -70,8 +67,18 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
         mView.setWatchlistStatus(true);
     }
 
+    public void addToWatchlist() {
+        addDisposable(mAddMovieUseCase.execute(randomMovieId, MovieType.WATCHLIST));
+        mView.setWatchlistStatus(true);
+    }
+
     public void deleteFromWatchlist(final int movieId) {
         addDisposable(mDeleteMovieUseCase.execute(movieId, MovieType.WATCHLIST));
+        mView.setWatchlistStatus(false);
+    }
+
+    public void deleteFromWatchlist() {
+        addDisposable(mDeleteMovieUseCase.execute(randomMovieId, MovieType.WATCHLIST));
         mView.setWatchlistStatus(false);
     }
 
@@ -80,8 +87,18 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
         mView.setFavoriteStatus(true);
     }
 
+    public void addToFavorites() {
+        addDisposable(mAddMovieUseCase.execute(randomMovieId, MovieType.FAVORITE));
+        mView.setFavoriteStatus(true);
+    }
+
     public void deleteFromFavorites(final int movieId) {
         addDisposable(mDeleteMovieUseCase.execute(movieId, MovieType.FAVORITE));
+        mView.setFavoriteStatus(false);
+    }
+
+    public void deleteFromFavorites() {
+        addDisposable(mDeleteMovieUseCase.execute(randomMovieId, MovieType.FAVORITE));
         mView.setFavoriteStatus(false);
     }
 
@@ -96,7 +113,7 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
 
     private void showErrorMessage(final String message) {
         Timber.e("Movie details load error: %s", message);
-        mView.showToast(message);
+        mView.showSnackbar(message);
     }
 
 }

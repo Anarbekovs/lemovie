@@ -31,11 +31,9 @@ public interface PersonsRepository {
 
     /**
      * Getting a list of popular persons
-     *
-     * @param page - a page number
      * @return {@link Observable} of popular person results list
      */
-    Observable<List<PersonResultModel>> getPopularPersons(final int page);
+    Observable<List<PersonResultModel>> getPopularPersons();
 
     /**
      * Getting a list of persons by search query

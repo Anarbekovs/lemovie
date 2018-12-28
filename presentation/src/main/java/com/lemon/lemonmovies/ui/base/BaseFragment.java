@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.lemon.lemonmovies.R;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -36,13 +38,13 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     }
 
     @Override
-    public void showToast(final String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    public void showSnackbar(final String message) {
+        Snackbar.make(Objects.requireNonNull(getView()),message,Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showLongToast(final String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+    public void showLongSnackbar(final String message) {
+        Snackbar.make(Objects.requireNonNull(getView()),message,Snackbar.LENGTH_LONG).show();
     }
 
     @Override

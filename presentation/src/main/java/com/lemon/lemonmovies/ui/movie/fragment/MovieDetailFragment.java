@@ -145,12 +145,6 @@ public final class MovieDetailFragment extends BaseFragment implements MovieDeta
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-
     private void initOnPersonClickListener(final Context context) {
         if (context instanceof OnPersonClickListener) {
             this.mPersonClickListener = (OnPersonClickListener) context;
@@ -254,23 +248,29 @@ public final class MovieDetailFragment extends BaseFragment implements MovieDeta
 
     @OnClick({R.id.detail_movie_rating_logo, R.id.detail_movie_rating})
     void onRatingClick() {
-        this.performRatingClick();
+  //      this.performRatingClick();
     }
 
     private void performWatchlistClick() {
-        if (!mWatchlist) {
+        if (!mWatchlist && mMovieId != 0)
             mPresenter.addToWatchlist(mMovieId);
-        } else {
+        else if (!mWatchlist)
+            mPresenter.addToWatchlist();
+        else if (mMovieId != 0)
             mPresenter.deleteFromWatchlist(mMovieId);
-        }
+        else
+            mPresenter.deleteFromWatchlist();
     }
 
     private void performFavoriteClick() {
-        if (!mFavorite) {
+        if (!mFavorite && mMovieId != 0)
             mPresenter.addToFavorites(mMovieId);
-        } else {
+        else if (!mFavorite)
+            mPresenter.addToFavorites();
+        else if (mMovieId != 0)
             mPresenter.deleteFromFavorites(mMovieId);
-        }
+        else
+            mPresenter.deleteFromFavorites();
     }
 
     private void performRatingClick() {

@@ -48,6 +48,6 @@ public final class MoviesSearchPresenter extends BasePresenter<MoviesSearchView>
 
     private void showErrorMessage(final String message) {
         Timber.e("Movies search error: %s", message);
-        mView.showToast(message);
+        mView.showSnackbar(message);
     }
 }

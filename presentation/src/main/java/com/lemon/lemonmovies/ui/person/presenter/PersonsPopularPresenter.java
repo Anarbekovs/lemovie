@@ -19,7 +19,6 @@ import timber.log.Timber;
 public final class PersonsPopularPresenter extends BasePresenter<PersonsPopularView> {
 
     private final GetPopularPersonsUseCase mGetPopularPersonsUseCase;
-    private static final int mPage = 1; //todo stub
 
     @Inject
     public PersonsPopularPresenter(final GetPopularPersonsUseCase getPopularPersonsUseCase) {
@@ -27,7 +26,7 @@ public final class PersonsPopularPresenter extends BasePresenter<PersonsPopularV
     }
 
     public void getPopularPersons() {
-        addDisposable(mGetPopularPersonsUseCase.execute(mPage)
+        addDisposable(mGetPopularPersonsUseCase.execute()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(PersonResultDataModelMapper::transform)
@@ -46,6 +45,6 @@ public final class PersonsPopularPresenter extends BasePresenter<PersonsPopularV
 
     private void showErrorMessage(final String message) {
         Timber.e("Popular persons load error: %s", message);
-        mView.showToast(message);
+        mView.showSnackbar(message);
     }
 }

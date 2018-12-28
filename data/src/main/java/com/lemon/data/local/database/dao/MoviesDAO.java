@@ -12,7 +12,6 @@ import com.lemon.data.local.entity.MovieEntity;
 
 import java.util.List;
 
-import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 

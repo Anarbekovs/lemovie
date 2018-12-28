@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.lemon.domain.types.MovieType;
 import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.listener.OnMovieClickListener;
 import com.lemon.lemonmovies.listener.OnPersonClickListener;
@@ -108,7 +107,7 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
                 break;
             case R.id.fab_swap_movie:
                 getSupportFragmentManager().beginTransaction()
-                        .add(R.id.frame_movie, MovieDetailFragment.newInstance(), MovieDetailFragment.TAG)
+                        .replace(R.id.frame_movie, MovieDetailFragment.newInstance(), MovieDetailFragment.TAG)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                         .commit();
                 break;
