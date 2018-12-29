@@ -46,6 +46,7 @@ public final class TvShowsActivity extends NavigationBaseActivity implements OnT
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tv_shows);
+        setTitle(R.string.app_title_tv_shows);
         ButterKnife.bind(this);
         super.setupDrawer();
         initUI();
@@ -54,7 +55,7 @@ public final class TvShowsActivity extends NavigationBaseActivity implements OnT
     @Override
     protected void onResume() {
         super.onResume();
-        setTitle(R.string.app_title_tv_shows);
+
     }
 
     @Override
@@ -101,7 +102,7 @@ public final class TvShowsActivity extends NavigationBaseActivity implements OnT
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fab_find_tv_show:
-                mFloatingButtonFindTvShow.setOnClickListener(v -> getNavigator().navigateToTvShowSearchScreen(this));
+                getNavigator().navigateToTvShowSearchScreen(this);
                 break;
             case R.id.fab_swap_tv_swows:
                 getSupportFragmentManager().beginTransaction()

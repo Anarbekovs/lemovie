@@ -46,6 +46,7 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
+        setTitle(R.string.app_title_movies);
         ButterKnife.bind(this);
         super.setupDrawer();
         initUI();
@@ -54,9 +55,7 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
     @Override
     protected void onResume() {
         super.onResume();
-        setTitle(R.string.app_title_movies);
-
-    }
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
