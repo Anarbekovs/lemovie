@@ -77,7 +77,7 @@ public final class TvShowsActivity extends NavigationBaseActivity implements OnT
 
     private void initUI() {
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.frame_tv_shows);
+        Fragment fragment = fm.findFragmentByTag(TvShowDetailFragment.TAG);
 
         if (fragment == null) {
             fm.beginTransaction()

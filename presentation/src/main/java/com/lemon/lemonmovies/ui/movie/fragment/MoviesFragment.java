@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -171,6 +173,7 @@ public final class MoviesFragment extends BaseFragment implements MoviesView {
         final Context wrapper = new ContextThemeWrapper(getActivity(), R.style.AppTheme_PopupStyle);
         final PopupMenu popupMenu = new PopupMenu(wrapper, view);
         popupMenu.inflate(R.menu.menu_popup_movie);
+
         popupMenu.setOnMenuItemClickListener(item -> {
             final int id = item.getItemId();
             switch (id) {

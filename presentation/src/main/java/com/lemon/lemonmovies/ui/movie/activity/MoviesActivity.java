@@ -78,7 +78,7 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
 
     private void initUI() {
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.frame_movie);
+        Fragment fragment = fm.findFragmentByTag(MovieDetailFragment.TAG);
 
         if (fragment == null) {
             fm.beginTransaction()

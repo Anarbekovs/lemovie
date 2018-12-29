@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,10 +17,13 @@ import com.lemon.domain.types.TvShowType;
 import com.lemon.lemonmovies.DeviceConfigurationHelper;
 import com.lemon.lemonmovies.R;
 import com.lemon.lemonmovies.ui.movie.activity.MoviesActivity;
+import com.lemon.lemonmovies.ui.movie.fragment.MovieDetailFragment;
 import com.lemon.lemonmovies.ui.movie.fragment.MoviesFragment;
 import com.lemon.lemonmovies.ui.person.activity.PersonsActivity;
 import com.lemon.lemonmovies.ui.person.fragment.PersonsFragment;
+import com.lemon.lemonmovies.ui.person.fragment.PersonsPopularFragment;
 import com.lemon.lemonmovies.ui.tvshow.activity.TvShowsActivity;
+import com.lemon.lemonmovies.ui.tvshow.fragment.TvShowDetailFragment;
 import com.lemon.lemonmovies.ui.tvshow.fragment.TvShowsFragment;
 
 import butterknife.BindView;
@@ -75,6 +80,13 @@ public abstract class NavigationBaseActivity extends BaseActivity {
                         getNavigator().navigateToMoviesScreen(this);
                         overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
                     }, NAV_CLOSE_DELAY);
+                } else if (mNavItemSelected != id && this instanceof MoviesActivity) {
+                    setTitle(R.string.nav_title_movies);
+                    mNavItemSelected = id;
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.frame_movie, MovieDetailFragment.newInstance(), MovieDetailFragment.TAG)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                            .commit();
                 }
                 break;
             case R.id.nav_item_tv_shows:
@@ -84,6 +96,13 @@ public abstract class NavigationBaseActivity extends BaseActivity {
                         getNavigator().navigateToTvShowsScreen(this);
                         overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
                     }, NAV_CLOSE_DELAY);
+                } else if (mNavItemSelected != id && this instanceof TvShowsActivity) {
+                    setTitle(R.string.nav_title_tv_shows);
+                    mNavItemSelected = id;
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.frame_tv_shows, TvShowDetailFragment.newInstance(), TvShowDetailFragment.TAG)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                            .commit();
                 }
                 break;
             case R.id.nav_item_persons:
@@ -93,9 +112,21 @@ public abstract class NavigationBaseActivity extends BaseActivity {
                         getNavigator().navigateToPersonsScreen(this);
                         overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
                     }, NAV_CLOSE_DELAY);
+                } else if (mNavItemSelected != id && this instanceof PersonsActivity) {
+                    setTitle(R.string.nav_title_person);
+                    mNavItemSelected = id;
+                    mHandler.postDelayed(() -> {
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.frame_persons, PersonsPopularFragment.newInstance(),
+                                        PersonsPopularFragment.TAG)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                                .commit();
+                        overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
+                    }, NAV_CLOSE_DELAY);
                 }
                 break;
             case R.id.nav_item_watchlist:
+                setTitle(R.string.nav_title_watchlist);
                 if (this instanceof MoviesActivity) {
                     mNavItemSelected = id;
                     mHandler.postDelayed(() -> {
@@ -116,8 +147,7 @@ public abstract class NavigationBaseActivity extends BaseActivity {
                                 .commit();
                         overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
                     }, NAV_CLOSE_DELAY);
-                }
-                else if (this instanceof PersonsActivity) {
+                } else if (this instanceof PersonsActivity) {
                     mNavItemSelected = id;
                     mHandler.postDelayed(() -> {
                         getSupportFragmentManager().beginTransaction()
@@ -130,6 +160,7 @@ public abstract class NavigationBaseActivity extends BaseActivity {
                 }
                 break;
             case R.id.nav_item_favorites:
+                setTitle(R.string.nav_title_favorites);
                 if (this instanceof MoviesActivity) {
                     mNavItemSelected = id;
                     mHandler.postDelayed(() -> {
@@ -148,7 +179,8 @@ public abstract class NavigationBaseActivity extends BaseActivity {
                                 .commit();
                         overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
                     }, NAV_CLOSE_DELAY);
-                } else if (this instanceof PersonsActivity){
+                } else if (this instanceof PersonsActivity) {
+                    mNavItemSelected = id;
                     getSupportFragmentManager().beginTransaction()
                             .add(R.id.frame_persons, PersonsFragment.newInstance())
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
@@ -169,7 +201,6 @@ public abstract class NavigationBaseActivity extends BaseActivity {
                 getNavigator().navigateToMarketAppRating(this);
                 break;
             default:
-
                 break;
         }
         mDrawer.closeDrawer(Gravity.START);
