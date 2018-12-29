@@ -88,7 +88,10 @@ public final class MoviesRepositoryImpl implements MoviesRepository {
         return mMoviesDao.getMovieById(movieId).toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
-                .onErrorResumeNext(throwable -> {
+                .doOnNext(entity -> {
+                    entity.setWatchlist(true);
+                    mMoviesDao.updateMovie(entity);
+                }).onErrorResumeNext(throwable -> {
                     return mApiMapper.getMovieDetails(movieId)
                             .map(MovieEntityMapper::transform)
                             .doOnNext(entity -> {
@@ -103,7 +106,10 @@ public final class MoviesRepositoryImpl implements MoviesRepository {
         return mMoviesDao.getMovieById(movieId).toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
-                .onErrorResumeNext(throwable -> {
+                .doOnNext(entity -> {
+                    entity.setFavorite(true);
+                    mMoviesDao.updateMovie(entity);
+                }).onErrorResumeNext(throwable -> {
                     return mApiMapper.getMovieDetails(movieId)
                             .map(MovieEntityMapper::transform)
                             .doOnNext(entity -> {

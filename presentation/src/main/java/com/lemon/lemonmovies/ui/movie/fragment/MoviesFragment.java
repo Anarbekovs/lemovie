@@ -173,7 +173,11 @@ public final class MoviesFragment extends BaseFragment implements MoviesView {
         final Context wrapper = new ContextThemeWrapper(getActivity(), R.style.AppTheme_PopupStyle);
         final PopupMenu popupMenu = new PopupMenu(wrapper, view);
         popupMenu.inflate(R.menu.menu_popup_movie);
-
+        Menu menu = popupMenu.getMenu();
+        if (mType == MovieType.WATCHLIST)
+            menu.findItem(R.id.menu_add_to_watchlist).setVisible(false);
+        if (mType == MovieType.FAVORITE)
+            menu.findItem(R.id.menu_add_to_favorites).setVisible(false);
         popupMenu.setOnMenuItemClickListener(item -> {
             final int id = item.getItemId();
             switch (id) {
