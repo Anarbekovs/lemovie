@@ -68,7 +68,7 @@ public final class MoviesPresenter extends BasePresenter<MoviesView> {
 
     private void showErrorMessage(final String message) {
         Timber.e("Movies load error: %s", message);
-        mView.showSnackbar(message);
+        mView.showShortToast(message);
     }
 
 

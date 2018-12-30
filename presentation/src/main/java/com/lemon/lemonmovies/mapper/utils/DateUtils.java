@@ -21,7 +21,7 @@ public final class DateUtils {
      * @return converted date string
      */
     public static String parseDateToYear(final String date) {
-        if (date != null) {
+        if (date != null && !(date.equals(""))) {
             try {
                 return mOutputYearFormat.format(mInputDateFormat.parse(date));
             } catch (ParseException e) {

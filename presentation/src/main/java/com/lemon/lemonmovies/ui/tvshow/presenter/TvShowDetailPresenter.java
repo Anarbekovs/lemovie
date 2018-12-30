@@ -1,5 +1,7 @@
 package com.lemon.lemonmovies.ui.tvshow.presenter;
 
+import android.util.Log;
+
 import com.lemon.lemonmovies.di.scope.TvShowsScope;
 import com.lemon.lemonmovies.mapper.TvShowDetailDataModelMapper;
 import com.lemon.lemonmovies.model.detail.TvShowDetailDataModel;
@@ -14,6 +16,7 @@ import com.lemon.domain.usecase.tvshow.SetTvShowRatingUseCase;
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -42,8 +45,8 @@ public final class TvShowDetailPresenter extends BasePresenter<TvShowDetailView>
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(TvShowDetailDataModelMapper::transform)
-                .subscribe(this::setTvShowDetails,
-                        throwable -> showErrorMessage(throwable.getLocalizedMessage())));
+                .subscribe(this::setTvShowDetails,throwable -> showErrorMessage(throwable.getLocalizedMessage())));
+
     }
 
     public void getRandomTvShowDetails() {
@@ -111,6 +114,6 @@ public final class TvShowDetailPresenter extends BasePresenter<TvShowDetailView>
 
     private void showErrorMessage(final String message) {
         Timber.e("TV details load error: %s", message);
-        mView.showSnackbar(message);
+        mView.showShortToast(message);
     }
 }

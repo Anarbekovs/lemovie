@@ -64,11 +64,13 @@ public abstract class NavigationBaseActivity extends BaseActivity {
                 getToolbar(), R.string.nav_drawer_open, R.string.nav_drawer_close);
         mDrawer.addDrawerListener(toggle);
         toggle.syncState();
-
         mNavigationView.setNavigationItemSelectedListener(item -> {
             NavigationBaseActivity.this.onNavItemClick(item.getItemId());
             return true;
         });
+        if (this instanceof PersonsActivity) {
+            mNavigationView.getMenu().findItem(R.id.nav_item_watchlist).setVisible(false);
+        }
     }
 
     private void onNavItemClick(final int id) {

@@ -92,8 +92,8 @@
     <string name="credit_unknown_title">Unknown</string>
 
     <!--Popup Menu-->
-    <string name="menu_add_to_watchlist">Add Watchlist</string>
-    <string name="menu_add_to_favorite">Add Favorite</string>
+    <string name="menu_add_to_watchlist">Add To Watchlist</string>
+    <string name="menu_add_to_favorite">Add To Favorites</string>
     <string name="menu_delete">Delete</string>
 
 </resources>

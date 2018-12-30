@@ -20,7 +20,7 @@ import okhttp3.OkHttpClient;
  * Class ensures that Glide's generated API is created
  */
 @GlideModule
-public final class CatchMovieGlideModule extends AppGlideModule {
+public final class LemonMoviesGlideModule extends AppGlideModule {
 
     public static final int CROSS_FADE_DURATION = 400;
 

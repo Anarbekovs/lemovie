@@ -10,14 +10,14 @@ public interface BaseView {
      *
      * @param message - a message string
      */
-    void showSnackbar(final String message);
+    void showShortToast(final String message);
 
     /**
      * Shows a long toast with specified message
      *
      * @param message - a message string
      */
-    void showLongSnackbar(final String message);
+    void showLongToast(final String message);
 
     /**
      * Shows a progress bar

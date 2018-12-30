@@ -55,7 +55,7 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
     @Override
     protected void onResume() {
         super.onResume();
-        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

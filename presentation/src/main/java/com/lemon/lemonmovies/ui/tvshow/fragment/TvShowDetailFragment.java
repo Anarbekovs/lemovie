@@ -17,7 +17,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.lemon.lemonmovies.BuildConfig;
 import com.lemon.lemonmovies.LemonMoviesApp;
-import com.lemon.lemonmovies.CatchMovieGlideModule;
+import com.lemon.lemonmovies.LemonMoviesGlideModule;
 import com.lemon.lemonmovies.GlideApp;
 import com.lemon.lemonmovies.LinearSpacingItemDecoration;
 import com.lemon.lemonmovies.R;
@@ -276,7 +276,7 @@ public final class TvShowDetailFragment extends BaseFragment implements TvShowDe
                 .error(R.drawable.ic_live_tv_white_240dp)
                 .thumbnail(GlideApp.with(this).load(previewPosterUrl))
                 .centerInside()
-                .transition(DrawableTransitionOptions.withCrossFade(CatchMovieGlideModule.CROSS_FADE_DURATION))
+                .transition(DrawableTransitionOptions.withCrossFade(LemonMoviesGlideModule.CROSS_FADE_DURATION))
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(mTvShowPoster);
     }

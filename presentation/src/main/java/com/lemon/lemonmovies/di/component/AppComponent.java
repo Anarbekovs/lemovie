@@ -1,6 +1,6 @@
 package com.lemon.lemonmovies.di.component;
 
-import com.lemon.lemonmovies.CatchMovieGlideModule;
+import com.lemon.lemonmovies.LemonMoviesGlideModule;
 import com.lemon.lemonmovies.di.module.AppModule;
 import com.lemon.lemonmovies.di.module.DataModule;
 import com.lemon.lemonmovies.di.module.NetworkModule;
@@ -16,7 +16,7 @@ public interface AppComponent {
 
     void inject(final BaseActivity baseActivity);
 
-    void inject(final CatchMovieGlideModule catchMovieGlideModule);
+    void inject(final LemonMoviesGlideModule lemonMoviesGlideModule);
 
     MoviesSubComponent getMoviesSubComponent();
 

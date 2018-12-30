@@ -45,6 +45,6 @@ public final class PersonsPopularPresenter extends BasePresenter<PersonsPopularV
 
     private void showErrorMessage(final String message) {
         Timber.e("Popular persons load error: %s", message);
-        mView.showSnackbar(message);
+        mView.showShortToast(message);
     }
 }

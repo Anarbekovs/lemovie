@@ -54,7 +54,7 @@ public final class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.Tv
                 .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.drawable.ic_live_tv_white_24dp)
+                .error(R.drawable.ic_live_tv_white_240dp)
                 .into(holder.mPosterImageView);
     }
 

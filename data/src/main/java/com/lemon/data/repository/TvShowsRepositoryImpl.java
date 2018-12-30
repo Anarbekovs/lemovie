@@ -101,7 +101,10 @@ public final class TvShowsRepositoryImpl implements TvShowsRepository {
         return mTvShowsDao.getTvShowById(tvShowId).toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
-                .onErrorResumeNext(throwable -> {
+                .doOnNext(tvShowEntity -> {
+                    tvShowEntity.setWatchlist(true);
+                    mTvShowsDao.updateTvShow(tvShowEntity);
+                }).onErrorResumeNext(throwable -> {
                     return mApiMapper.getTvShowDetails(tvShowId)
                             .map(TvShowEntityMapper::transform)
                             .doOnNext(entity -> {
@@ -116,7 +119,10 @@ public final class TvShowsRepositoryImpl implements TvShowsRepository {
         return mTvShowsDao.getTvShowById(tvShowId).toObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
-                .onErrorResumeNext(throwable -> {
+                .doOnNext(tvShowEntity -> {
+                    tvShowEntity.setFavorite(true);
+                    mTvShowsDao.updateTvShow(tvShowEntity);
+                }).onErrorResumeNext(throwable -> {
                     return mApiMapper.getTvShowDetails(tvShowId)
                             .map(TvShowEntityMapper::transform)
                             .doOnNext(entity -> {

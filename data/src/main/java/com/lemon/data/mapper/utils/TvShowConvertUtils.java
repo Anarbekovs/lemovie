@@ -114,10 +114,14 @@ public final class TvShowConvertUtils {
      */
     public static int convertEpisodesRuntime(final List<Integer> episodesRuntime) {
         int averageRuntime = 0;
-        for (int runtime : episodesRuntime) {
-            averageRuntime += runtime;
+        int episodes = episodesRuntime.size();
+        if (episodes != 0) {
+            for (int runtime : episodesRuntime) {
+                averageRuntime += runtime;
+            }
+            averageRuntime = averageRuntime / episodes;
         }
-        return averageRuntime / episodesRuntime.size();
+        return averageRuntime;
     }
 
     /**

@@ -49,6 +49,6 @@ public final class PersonsPresenter extends BasePresenter<PersonsView> {
 
     private void showErrorMessage(final String message) {
         Timber.e("Persons load error: %s", message);
-        mView.showSnackbar(message);
+        mView.showShortToast(message);
     }
 }

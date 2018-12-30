@@ -38,13 +38,13 @@ public abstract class BaseFragment extends Fragment implements BaseView {
     }
 
     @Override
-    public void showSnackbar(final String message) {
-        Snackbar.make(Objects.requireNonNull(getView()),message,Snackbar.LENGTH_SHORT).show();
+    public void showShortToast(final String message) {
+        Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void showLongSnackbar(final String message) {
-        Snackbar.make(Objects.requireNonNull(getView()),message,Snackbar.LENGTH_LONG).show();
+    public void showLongToast(final String message) {
+        Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
     }
 
     @Override

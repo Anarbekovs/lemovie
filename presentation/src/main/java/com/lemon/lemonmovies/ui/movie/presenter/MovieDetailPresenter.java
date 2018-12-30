@@ -113,7 +113,7 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
 
     private void showErrorMessage(final String message) {
         Timber.e("Movie details load error: %s", message);
-        mView.showSnackbar(message);
+        mView.showShortToast(message);
     }
 
 }

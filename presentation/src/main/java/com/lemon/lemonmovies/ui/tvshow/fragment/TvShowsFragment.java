@@ -11,10 +11,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.lemon.domain.types.MovieType;
 import com.lemon.lemonmovies.BuildConfig;
 import com.lemon.lemonmovies.LemonMoviesApp;
 import com.lemon.lemonmovies.LinearSpacingItemDecoration;
@@ -34,6 +36,8 @@ import java.util.Objects;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public final class TvShowsFragment extends BaseFragment implements TvShowsView {
 
@@ -45,6 +49,8 @@ public final class TvShowsFragment extends BaseFragment implements TvShowsView {
     RecyclerView mTvShowsRecyclerView;
     @BindView(R.id.empty_tv_shows)
     TextView mEmptyTvShowsTextView;
+    private Unbinder unbinder;
+
 
     @Inject
     TvShowsPresenter mPresenter;
@@ -82,7 +88,9 @@ public final class TvShowsFragment extends BaseFragment implements TvShowsView {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tv_shows, container, false);
+        View view = inflater.inflate(R.layout.fragment_tv_shows, container, false);
+        unbinder = ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
@@ -169,6 +177,11 @@ public final class TvShowsFragment extends BaseFragment implements TvShowsView {
         final Context wrapper = new ContextThemeWrapper(getActivity(), R.style.AppTheme_PopupStyle);
         final PopupMenu popupMenu = new PopupMenu(wrapper, view);
         popupMenu.inflate(R.menu.menu_popup_tv_show);
+        Menu menu = popupMenu.getMenu();
+        if (mType == TvShowType.WATCHLIST)
+            menu.findItem(R.id.menu_add_to_watchlist).setVisible(false);
+        if (mType == TvShowType.FAVORITE)
+            menu.findItem(R.id.menu_add_to_favorites).setVisible(false);
         popupMenu.setOnMenuItemClickListener(item -> {
             final int id = item.getItemId();
             switch (id) {
@@ -185,6 +198,12 @@ public final class TvShowsFragment extends BaseFragment implements TvShowsView {
             return true;
         });
         popupMenu.show();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     @Override

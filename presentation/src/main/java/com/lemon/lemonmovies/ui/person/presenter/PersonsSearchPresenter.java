@@ -48,6 +48,6 @@ public final class PersonsSearchPresenter extends BasePresenter<PersonsSearchVie
 
     private void showErrorMessage(final String message) {
         Timber.e("Persons search error: %s", message);
-        mView.showSnackbar(message);
+        mView.showShortToast(message);
     }
 }
