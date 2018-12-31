@@ -1,5 +1,7 @@
 package com.lemon.lemonmovies.ui.movie.presenter;
 
+import android.util.Log;
+
 import com.lemon.lemonmovies.di.scope.MoviesScope;
 import com.lemon.lemonmovies.mapper.MovieItemDataModelMapper;
 import com.lemon.lemonmovies.model.item.MovieItemDataModel;
@@ -15,6 +17,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -38,8 +41,9 @@ public final class MoviesPresenter extends BasePresenter<MoviesView> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(MovieItemDataModelMapper::transform)
-                .subscribe(this::setMovies,
-                        throwable -> showErrorMessage(throwable.getLocalizedMessage())));
+                .subscribe(this::setMovies, throwable -> {
+                    showErrorMessage(throwable.getLocalizedMessage());
+                }));
     }
 
     public void addToWatchlist(final int movieId) {
@@ -68,7 +72,6 @@ public final class MoviesPresenter extends BasePresenter<MoviesView> {
 
     private void showErrorMessage(final String message) {
         Timber.e("Movies load error: %s", message);
-        mView.showShortToast(message);
     }
 
 

@@ -78,7 +78,7 @@ public final class ConvertUtils {
      * @param amount - a movie amount with budget or revenue sum
      * @return converted movie amount
      */
-    public static String convertMovieAmount(final int amount) {
+    public static String convertMovieAmount(final long amount) {
         return new DecimalFormat(MOVIE_AMOUNT_FORMAT).format(amount);
     }
 

@@ -49,7 +49,6 @@ public final class TvShowsFragment extends BaseFragment implements TvShowsView {
     RecyclerView mTvShowsRecyclerView;
     @BindView(R.id.empty_tv_shows)
     TextView mEmptyTvShowsTextView;
-    private Unbinder unbinder;
 
 
     @Inject
@@ -88,9 +87,7 @@ public final class TvShowsFragment extends BaseFragment implements TvShowsView {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tv_shows, container, false);
-        unbinder = ButterKnife.bind(this, view);
-        return view;
+        return inflater.inflate(R.layout.fragment_tv_shows, container, false);
     }
 
     @Override
@@ -203,7 +200,6 @@ public final class TvShowsFragment extends BaseFragment implements TvShowsView {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
     }
 
     @Override

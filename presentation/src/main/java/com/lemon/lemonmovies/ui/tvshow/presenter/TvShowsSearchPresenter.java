@@ -48,6 +48,5 @@ public final class TvShowsSearchPresenter extends BasePresenter<TvShowsSearchVie
 
     private void showErrorMessage(final String message) {
         Timber.e("TV search error: %s", message);
-        mView.showShortToast(message);
     }
 }

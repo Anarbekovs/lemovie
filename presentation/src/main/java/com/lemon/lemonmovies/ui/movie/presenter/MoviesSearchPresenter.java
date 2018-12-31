@@ -1,5 +1,7 @@
 package com.lemon.lemonmovies.ui.movie.presenter;
 
+import android.util.Log;
+
 import com.lemon.lemonmovies.di.scope.MoviesScope;
 import com.lemon.lemonmovies.mapper.MovieResultDataModelMapper;
 import com.lemon.lemonmovies.model.result.MovieResultDataModel;
@@ -12,6 +14,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -32,7 +35,21 @@ public final class MoviesSearchPresenter extends BasePresenter<MoviesSearchView>
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(MovieResultDataModelMapper::transform)
                 .subscribe(this::showMoviesSearchResult,
-                        throwable -> showErrorMessage(throwable.getLocalizedMessage())));
+
+
+
+                        new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        throwable.getLocalizedMessage();
+                        Log.d("TAG","hgdfhkasjfgadsjfgasjh",throwable);
+                    }
+                }));
+
+
+
+
+                        //throwable -> showErrorMessage(throwable.getLocalizedMessage())));
     }
 
     private void showMoviesSearchResult(final List<MovieResultDataModel> movies) {
@@ -48,6 +65,5 @@ public final class MoviesSearchPresenter extends BasePresenter<MoviesSearchView>
 
     private void showErrorMessage(final String message) {
         Timber.e("Movies search error: %s", message);
-        mView.showShortToast(message);
     }
 }

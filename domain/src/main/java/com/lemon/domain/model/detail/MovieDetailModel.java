@@ -20,7 +20,7 @@ public final class MovieDetailModel {
     private final List<String> mAllPosters;
     private final String mDescription;
     private final int mBudget;
-    private final int mRevenue;
+    private final long mRevenue;
     private final String mStatus;
     private final String mLanguage;
     private final int mRuntime;
@@ -35,7 +35,7 @@ public final class MovieDetailModel {
     public MovieDetailModel(int id, String title, String originalTitle,
                             String tagLine, String releaseDate, List<String> genres,
                             String poster, String posterPreview, List<String> allPosters,
-                            String description, int budget, int revenue, String status,
+                            String description, int budget, long revenue, String status,
                             String language, int runtime, double rating, double tmdbRating,
                             int votesCount, boolean isWatchlist, boolean isFavorite,
                             List<PersonCreditModel> cast, List<PersonCreditModel> crew) {
@@ -107,7 +107,7 @@ public final class MovieDetailModel {
         return mBudget;
     }
 
-    public int getRevenue() {
+    public long getRevenue() {
         return mRevenue;
     }
 

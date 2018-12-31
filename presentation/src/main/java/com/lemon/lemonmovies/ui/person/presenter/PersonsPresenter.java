@@ -37,18 +37,17 @@ public final class PersonsPresenter extends BasePresenter<PersonsView> {
 
     private void setPersons(final List<PersonItemDataModel> persons) {
         if (persons != null && !persons.isEmpty()) {
-            Timber.i("Persons loaded successful, size: %s", persons.size());
+            Timber.i("Person loaded successful, size: %s", persons.size());
             mView.hideEmptyText();
             mView.setPersons(persons);
         } else {
-            Timber.w("Persons load failed: empty list");
+            Timber.w("Person load failed: empty list");
             mView.clearPersons();
             mView.showEmptyText();
         }
     }
 
     private void showErrorMessage(final String message) {
-        Timber.e("Persons load error: %s", message);
-        mView.showShortToast(message);
+        Timber.e("Person load error: %s", message);
     }
 }

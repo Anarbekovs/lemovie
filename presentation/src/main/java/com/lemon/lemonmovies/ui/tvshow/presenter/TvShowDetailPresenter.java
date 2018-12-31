@@ -114,6 +114,5 @@ public final class TvShowDetailPresenter extends BasePresenter<TvShowDetailView>
 
     private void showErrorMessage(final String message) {
         Timber.e("TV details load error: %s", message);
-        mView.showShortToast(message);
     }
 }

@@ -46,6 +46,5 @@ public final class MoviesPopularPresenter extends BasePresenter<MoviesPopularVie
 
     private void showErrorMessage(final String message) {
         Timber.e("Popular movies load error: %s", message);
-        mView.showShortToast(message);
     }
 }

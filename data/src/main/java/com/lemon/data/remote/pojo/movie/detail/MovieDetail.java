@@ -25,7 +25,7 @@ public final class MovieDetail {
     private String mBackdropPath;
 
     @SerializedName("revenue")
-    private int mRevenue;
+    private long mRevenue;
 
     @SerializedName("genres")
     private List<Genres> mGenres;
@@ -107,7 +107,7 @@ public final class MovieDetail {
         return mBackdropPath;
     }
 
-    public int getRevenue() {
+    public long getRevenue() {
         return mRevenue;
     }
 

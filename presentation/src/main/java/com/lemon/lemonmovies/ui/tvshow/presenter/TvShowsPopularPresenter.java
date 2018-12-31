@@ -46,6 +46,5 @@ public final class TvShowsPopularPresenter extends BasePresenter<TvShowsPopularV
 
     private void showErrorMessage(final String message) {
         Timber.e("Popular TV shows load error: %s", message);
-        mView.showShortToast(message);
     }
 }

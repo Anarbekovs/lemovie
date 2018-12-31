@@ -56,7 +56,7 @@ public final class MovieEntity {
     private final int mBudget;
 
     @ColumnInfo(name = "revenue")
-    private final int mRevenue;
+    private final long mRevenue;
 
     @ColumnInfo(name = "status")
     private final String mStatus;
@@ -104,7 +104,7 @@ public final class MovieEntity {
     public MovieEntity(int id, String title, String originalTitle,
                        String tagLine, String releaseDate, List<String> genres,
                        String poster, String posterPreview, List<String> allPosters, String description,
-                       int budget, int revenue, String status, String language,
+                       int budget, long revenue, String status, String language,
                        int runtime, double tmdbRating, int votesCount, List<PersonCredit> actors,
                        List<PersonCredit> directors, List<PersonCredit> writers) {
         this.mId = id;
@@ -173,7 +173,7 @@ public final class MovieEntity {
         return mBudget;
     }
 
-    public int getRevenue() {
+    public long getRevenue() {
         return mRevenue;
     }
 
