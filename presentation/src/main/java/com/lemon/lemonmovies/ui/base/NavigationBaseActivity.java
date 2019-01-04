@@ -76,20 +76,21 @@ public abstract class NavigationBaseActivity extends BaseActivity {
     private void onNavItemClick(final int id) {
         switch (id) {
             case R.id.nav_item_movies:
-                if (!(this instanceof MoviesActivity)) {
-                    mNavItemSelected = id;
-                    mHandler.postDelayed(() -> {
-                        getNavigator().navigateToMoviesScreen(this);
-                        overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
-                    }, NAV_CLOSE_DELAY);
-                } else if (mNavItemSelected != id && this instanceof MoviesActivity) {
+                if (mNavItemSelected != id && this instanceof MoviesActivity) {
                     setTitle(R.string.nav_title_movies);
                     mNavItemSelected = id;
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.frame_movie, MovieDetailFragment.newInstance(), MovieDetailFragment.TAG)
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                             .commit();
+                } else if (!(this instanceof MoviesActivity)) {
+                    mNavItemSelected = id;
+                    mHandler.postDelayed(() -> {
+                        getNavigator().navigateToMoviesScreen(this);
+                        overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
+                    }, NAV_CLOSE_DELAY);
                 }
+
                 break;
             case R.id.nav_item_tv_shows:
                 if (!(this instanceof TvShowsActivity)) {

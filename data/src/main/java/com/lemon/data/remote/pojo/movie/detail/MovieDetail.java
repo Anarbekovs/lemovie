@@ -87,6 +87,13 @@ public final class MovieDetail {
     @SerializedName("credits")
     private Credits mCredits;
 
+    @SerializedName("videos")
+    private Videos mVideos;
+
+    public Videos getVideos() {
+        return mVideos;
+    }
+
     public String getOriginalLanguage() {
         return mOriginalLanguage;
     }

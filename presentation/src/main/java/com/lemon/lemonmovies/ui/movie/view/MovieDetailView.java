@@ -10,4 +10,5 @@ public interface MovieDetailView extends BaseView {
     void setWatchlistStatus(final boolean isWatchlist);
 
     void setFavoriteStatus(final boolean isFavorite);
+
 }

@@ -47,7 +47,7 @@ public final class MovieEntity {
 
     @ColumnInfo(name = "posters")
     @TypeConverters(ArrayListConverter.class)
-    private final List<String> mAllPosters;
+    private final String mAllPosters;
 
     @ColumnInfo(name = "description")
     private final String mDescription;
@@ -101,12 +101,17 @@ public final class MovieEntity {
     @TypeConverters(CastCreditListConverter.class)
     private final List<PersonCredit> mWriters;
 
+
+    @ColumnInfo(name = "youtube_key")
+    private final String mYoutubeKey;
+
+
     public MovieEntity(int id, String title, String originalTitle,
                        String tagLine, String releaseDate, List<String> genres,
-                       String poster, String posterPreview, List<String> allPosters, String description,
+                       String poster, String posterPreview, String allPosters, String description,
                        int budget, long revenue, String status, String language,
                        int runtime, double tmdbRating, int votesCount, List<PersonCredit> actors,
-                       List<PersonCredit> directors, List<PersonCredit> writers) {
+                       List<PersonCredit> directors, List<PersonCredit> writers,String youtubeKey) {
         this.mId = id;
         this.mTitle = title;
         this.mOriginalTitle = originalTitle;
@@ -127,6 +132,7 @@ public final class MovieEntity {
         this.mActors = actors;
         this.mDirectors = directors;
         this.mWriters = writers;
+        this.mYoutubeKey = youtubeKey;
     }
 
     public int getId() {
@@ -161,7 +167,7 @@ public final class MovieEntity {
         return mPosterPreview;
     }
 
-    public List<String> getAllPosters() {
+    public String getAllPosters() {
         return mAllPosters;
     }
 
@@ -244,6 +250,11 @@ public final class MovieEntity {
     public void setFavorite(final boolean isFavorite) {
         this.mFavorite = isFavorite;
     }
+
+    public String getYoutubeKey() {
+        return mYoutubeKey;
+    }
+
 
     public void setCreationDate(final Date creationDate) {
         this.mCreationDate = creationDate;

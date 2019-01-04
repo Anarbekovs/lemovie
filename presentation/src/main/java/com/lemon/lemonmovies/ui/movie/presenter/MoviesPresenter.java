@@ -1,7 +1,5 @@
 package com.lemon.lemonmovies.ui.movie.presenter;
 
-import android.util.Log;
-
 import com.lemon.lemonmovies.di.scope.MoviesScope;
 import com.lemon.lemonmovies.mapper.MovieItemDataModelMapper;
 import com.lemon.lemonmovies.model.item.MovieItemDataModel;

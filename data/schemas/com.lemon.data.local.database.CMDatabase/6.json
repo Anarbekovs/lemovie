@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 6,
-    "identityHash": "95ea71a55409fa28f79bee1083064256",
+    "identityHash": "880f15a82e7e2c1f3c2fa61ed14e58bd",
     "entities": [
       {
         "tableName": "Movies",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT, `original_title` TEXT, `tagline` TEXT, `release_date` TEXT, `genres` TEXT, `poster` TEXT, `poster_preview` TEXT, `posters` TEXT, `description` TEXT, `budget` INTEGER NOT NULL, `revenue` INTEGER NOT NULL, `status` TEXT, `language` TEXT, `runtime` INTEGER NOT NULL, `rating` REAL NOT NULL, `tmdb_rating` REAL NOT NULL, `votes_count` INTEGER NOT NULL, `recent` INTEGER NOT NULL, `watchlist` INTEGER NOT NULL, `favorite` INTEGER NOT NULL, `creation_date` INTEGER, `actors` TEXT, `directors` TEXT, `writers` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `title` TEXT, `original_title` TEXT, `tagline` TEXT, `release_date` TEXT, `genres` TEXT, `poster` TEXT, `poster_preview` TEXT, `posters` TEXT, `description` TEXT, `budget` INTEGER NOT NULL, `revenue` INTEGER NOT NULL, `status` TEXT, `language` TEXT, `runtime` INTEGER NOT NULL, `rating` REAL NOT NULL, `tmdb_rating` REAL NOT NULL, `votes_count` INTEGER NOT NULL, `recent` INTEGER NOT NULL, `watchlist` INTEGER NOT NULL, `favorite` INTEGER NOT NULL, `creation_date` INTEGER, `actors` TEXT, `directors` TEXT, `writers` TEXT, `youtube_key` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "mId",
@@ -155,6 +155,12 @@
           {
             "fieldPath": "mWriters",
             "columnName": "writers",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "mYoutubeKey",
+            "columnName": "youtube_key",
             "affinity": "TEXT",
             "notNull": false
           }
@@ -421,7 +427,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"95ea71a55409fa28f79bee1083064256\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"880f15a82e7e2c1f3c2fa61ed14e58bd\")"
     ]
   }
 }

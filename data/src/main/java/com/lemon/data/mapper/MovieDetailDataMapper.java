@@ -45,7 +45,8 @@ public final class MovieDetailDataMapper {
                 entity.isWatchlist(),
                 entity.isFavorite(),
                 transformPersonCredits(entity.getActors()),
-                transformPersonCredits(crewList)
+                transformPersonCredits(crewList),
+                entity.getYoutubeKey()
         );
     }
 

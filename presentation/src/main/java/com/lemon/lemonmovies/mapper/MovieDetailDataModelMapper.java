@@ -42,6 +42,7 @@ public final class MovieDetailDataModelMapper {
                 .setFavorite(model.isFavorite())
                 .setCast(transformPersonsCredits(model.getCast()))
                 .setCrew(transformPersonsCredits(model.getCrew()))
+                .setYoutubeKey(model.getYoutubeKey())
                 .build();
     }
 

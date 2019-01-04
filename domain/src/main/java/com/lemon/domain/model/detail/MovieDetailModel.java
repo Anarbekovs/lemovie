@@ -17,7 +17,7 @@ public final class MovieDetailModel {
     private final List<String> mGenres;
     private final String mPoster;
     private final String mPosterPreview;
-    private final List<String> mAllPosters;
+    private final String mAllPosters;
     private final String mDescription;
     private final int mBudget;
     private final long mRevenue;
@@ -29,16 +29,17 @@ public final class MovieDetailModel {
     private final int mVotesCount;
     private final boolean mWatchlist;
     private final boolean mFavorite;
+    private final String mYoutubeKey;
     private final List<PersonCreditModel> mCast;
     private final List<PersonCreditModel> mCrew;
 
     public MovieDetailModel(int id, String title, String originalTitle,
                             String tagLine, String releaseDate, List<String> genres,
-                            String poster, String posterPreview, List<String> allPosters,
+                            String poster, String posterPreview, String allPosters,
                             String description, int budget, long revenue, String status,
                             String language, int runtime, double rating, double tmdbRating,
                             int votesCount, boolean isWatchlist, boolean isFavorite,
-                            List<PersonCreditModel> cast, List<PersonCreditModel> crew) {
+                            List<PersonCreditModel> cast, List<PersonCreditModel> crew,String youtubeKey) {
         this.mId = id;
         this.mTitle = title;
         this.mOriginalTitle = originalTitle;
@@ -61,6 +62,7 @@ public final class MovieDetailModel {
         this.mFavorite = isFavorite;
         this.mCast = cast;
         this.mCrew = crew;
+        this.mYoutubeKey = youtubeKey;
     }
 
     public int getId() {
@@ -95,7 +97,7 @@ public final class MovieDetailModel {
         return mPosterPreview;
     }
 
-    public List<String> getAllPosters() {
+    public String getAllPosters() {
         return mAllPosters;
     }
 
@@ -133,6 +135,10 @@ public final class MovieDetailModel {
 
     public int getVotesCount() {
         return mVotesCount;
+    }
+
+    public String getYoutubeKey() {
+        return mYoutubeKey;
     }
 
     public boolean isWatchlist() {

@@ -1,7 +1,5 @@
 package com.lemon.lemonmovies.ui.tvshow.presenter;
 
-import android.util.Log;
-
 import com.lemon.lemonmovies.di.scope.TvShowsScope;
 import com.lemon.lemonmovies.mapper.TvShowDetailDataModelMapper;
 import com.lemon.lemonmovies.model.detail.TvShowDetailDataModel;

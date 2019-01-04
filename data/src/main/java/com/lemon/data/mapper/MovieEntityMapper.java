@@ -36,6 +36,8 @@ public final class MovieEntityMapper {
                 movie.getVoteCount(),
                 MovieConvertUtils.convertCastToActorsCredits(movie.getCredits().getCast()),
                 MovieConvertUtils.convertCrewToDirectorsCredits(movie.getCredits().getCrew()),
-                MovieConvertUtils.convertCrewToWritersCredits(movie.getCredits().getCrew()));
+                MovieConvertUtils.convertCrewToWritersCredits(movie.getCredits().getCrew()),
+                MovieConvertUtils.convertVideos(movie.getVideos().getResults()));
+
     }
 }

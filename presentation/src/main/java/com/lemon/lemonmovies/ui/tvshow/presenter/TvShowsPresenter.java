@@ -1,7 +1,5 @@
 package com.lemon.lemonmovies.ui.tvshow.presenter;
 
-import android.util.Log;
-
 import com.lemon.lemonmovies.di.scope.TvShowsScope;
 import com.lemon.lemonmovies.mapper.TvShowItemDataModelMapper;
 import com.lemon.lemonmovies.model.item.TvShowItemDataModel;
@@ -41,17 +39,7 @@ public final class TvShowsPresenter extends BasePresenter<TvShowsView> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(TvShowItemDataModelMapper::transform)
-                .subscribe(this::setTvShows,
-                        new Consumer<Throwable>() {
-                            @Override
-                            public void accept(Throwable throwable) throws Exception {
-                                throwable.getLocalizedMessage();
-                                Log.d("TAG","hgdfhkasjfgadsjfgasjh",throwable);
-                            }
-                        }));
-
-
-                        //  throwable -> showErrorMessage(throwable.getLocalizedMessage())));
+                .subscribe(this::setTvShows, throwable -> showErrorMessage(throwable.getLocalizedMessage())));
     }
 
     public void addToWatchlist(final int movieId) {

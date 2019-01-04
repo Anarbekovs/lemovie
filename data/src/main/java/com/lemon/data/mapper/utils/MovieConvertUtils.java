@@ -3,6 +3,7 @@ package com.lemon.data.mapper.utils;
 import com.lemon.data.local.entity.credits.PersonCredit;
 import com.lemon.data.remote.api.TMDbApi;
 import com.lemon.data.remote.pojo.movie.detail.Cast;
+import com.lemon.data.remote.pojo.movie.detail.Results;
 import com.lemon.data.remote.pojo.movie.detail.Crew;
 import com.lemon.data.remote.pojo.movie.detail.Genres;
 import com.lemon.data.remote.pojo.movie.detail.Poster;
@@ -21,6 +22,7 @@ public final class MovieConvertUtils {
 
     private static final String JOB_DIRECTOR = "Director";
     private static final String JOB_WRITER = "Writer";
+    private static final String VIDEO_TYPE = "Trailer";
 
     private static final int FIRST_SPOKEN_LANGUAGE = 0;
     private static final int GENRES_MAX = 3;
@@ -74,14 +76,22 @@ public final class MovieConvertUtils {
      * @param postersList - a list of posters
      * @return list of poster urls
      */
-    public static List<String> convertPosters(final List<Poster> postersList) {
-        final List<String> posters = new ArrayList<>();
-        for (final Poster poster : postersList) {
-            if (poster.getFilePath() != null) {
-                posters.add(convertOriginalImageUrl(poster.getFilePath()));
+    public static String convertPosters(final List<Poster> postersList) {
+        if (postersList != null && !postersList.isEmpty()) {
+          return convertOriginalImageUrl(postersList.get(postersList.size() - 1).getFilePath());
+        }
+        return null;
+    }
+
+    public static String convertVideos(final List<Results> resultsList) {
+        if (resultsList != null && !resultsList.isEmpty()) {
+            for (int i = 0; i < resultsList.size(); i++) {
+                if (resultsList.get(i).getType().equals(VIDEO_TYPE)) {
+                    return resultsList.get(i).getKey();
+                }
             }
         }
-        return posters;
+        return null;
     }
 
     /**

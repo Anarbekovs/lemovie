@@ -8,7 +8,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +22,7 @@ import com.lemon.lemonmovies.ui.movie.fragment.MoviesFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Optional;
 
 /**
  * Movies Activity contains movie collections
@@ -34,10 +34,13 @@ import butterknife.OnClick;
 public final class MoviesActivity extends NavigationBaseActivity implements OnMovieClickListener, OnPersonClickListener {
 
 
+    @Nullable
     @BindView(R.id.fab_find_movie)
     FloatingActionButton mFloatingButtonFindMovie;
+    @Nullable
     @BindView(R.id.fab_swap_movie)
     FloatingActionButton mFloatingButtonSwapMovie;
+    Fragment mFragment;
 
     public static Intent newIntent(final Context context) {
         return new Intent(context, MoviesActivity.class);
@@ -78,16 +81,15 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
 
     private void initUI() {
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentByTag(MovieDetailFragment.TAG);
+        mFragment = fm.findFragmentByTag(MovieDetailFragment.TAG);
 
-        if (fragment == null) {
+        if (mFragment == null) {
             fm.beginTransaction()
                     .add(R.id.frame_movie, MovieDetailFragment.newInstance(), MovieDetailFragment.TAG)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .commit();
         }
     }
-
 
     @Override
     public void onMovieClick(int movieId) {
@@ -99,6 +101,7 @@ public final class MoviesActivity extends NavigationBaseActivity implements OnMo
         getNavigator().navigateToPersonDetailScreen(this, personId);
     }
 
+    @Optional
     @OnClick({R.id.fab_find_movie, R.id.fab_swap_movie})
     public void onViewClicked(View view) {
         switch (view.getId()) {

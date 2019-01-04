@@ -1,8 +1,5 @@
 package com.lemon.lemonmovies.ui.movie.presenter;
 
-
-import android.util.Log;
-
 import com.lemon.lemonmovies.di.scope.MoviesScope;
 import com.lemon.lemonmovies.mapper.MovieDetailDataModelMapper;
 import com.lemon.lemonmovies.model.detail.MovieDetailDataModel;
@@ -15,12 +12,9 @@ import com.lemon.domain.usecase.movie.GetMovieDetailsUseCase;
 import com.lemon.domain.usecase.movie.SetMovieRatingUseCase;
 
 
-import java.io.PrintStream;
-
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -49,27 +43,15 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(MovieDetailDataModelMapper::transform)
-                .subscribe(this::setMovieDetails, new Consumer<Throwable>() {
-                            @Override
-                            public void accept(Throwable throwable) throws Exception {
-                                throwable.getLocalizedMessage();
-                                throwable.printStackTrace();
-
-                                Log.d("TAG","324315435435",throwable);
-                            }
-                        }));
-
-        //showErrorMessage(throwable.getLocalizedMessage())));
+                .subscribe(this::setMovieDetails, Throwable::getLocalizedMessage));
     }
-
     public void getRandomMovieDetails() {
         addDisposable(mGetMovieDetailsUseCase.execute()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(MovieDetailDataModelMapper::transform)
                 .doOnNext(movieDetailDataModel -> randomMovieId = movieDetailDataModel.getMovieId())
-                .subscribe(this::setMovieDetails,
-                        throwable -> showErrorMessage(throwable.getLocalizedMessage())));
+                .subscribe(this::setMovieDetails, Throwable::getLocalizedMessage));
     }
 
     public void setMovieRating(final int movieId, final double rating) {

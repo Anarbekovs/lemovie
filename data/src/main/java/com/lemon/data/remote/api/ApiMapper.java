@@ -197,7 +197,7 @@ public final class ApiMapper {
         private static final boolean IS_ADULT_ENABLED = false;
         private static final String LANGUAGE = Locale.getDefault().getLanguage();
         private static final String REGION = Locale.getDefault().getCountry();
-        private static final String MOVIE_REQUEST_APPEND = "images,credits";
+        private static final String MOVIE_REQUEST_APPEND = "images,credits,videos";
         private static final String TV_SHOW_REQUEST_APPEND = "images,credits";
         private static final String PERSON_REQUEST_APPEND = "movie_credits,tv_credits";
     }

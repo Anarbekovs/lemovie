@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +15,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 
 import com.lemon.lemonmovies.BuildConfig;
 import com.lemon.lemonmovies.LemonMoviesApp;
@@ -40,7 +40,6 @@ import butterknife.BindView;
 public final class MoviesFragment extends BaseFragment implements MoviesView {
 
     public static final String TAG = MoviesFragment.class.getSimpleName();
-
     private static final String ARG_MOVIES_TYPE = BuildConfig.APPLICATION_ID + "ARG.MOVIES_TYPE";
 
     @BindView(R.id.rv_movies)

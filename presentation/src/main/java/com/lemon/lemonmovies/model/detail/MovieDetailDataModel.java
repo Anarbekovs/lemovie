@@ -17,7 +17,7 @@ public final class MovieDetailDataModel {
     private final String mMovieTagLine;
     private final String mMovieReleaseDate;
     private final List<String> mMovieGenres;
-    private final List<String> mMovieAllPosters;
+    private final String mMovieAllPosters;
     private final String mMovieInfo;
     private final String mMovieDescription;
     private final String mMovieBudget;
@@ -25,6 +25,7 @@ public final class MovieDetailDataModel {
     private final String mMovieRating;
     private final String mMovieTmdbRating;
     private final String mMovieVotesCount;
+    private final String mYoutubeKey;
     private final boolean mMovieWatchlist;
     private final boolean mMovieFavorite;
     private final List<PersonCreditDataModel> mMovieCast;
@@ -51,6 +52,7 @@ public final class MovieDetailDataModel {
         this.mMovieFavorite = builder.favorite;
         this.mMovieCast = builder.cast;
         this.mMovieCrew = builder.crew;
+        this.mYoutubeKey = builder.youtubeKey;
     }
 
     public static Builder newBuilder() {
@@ -89,7 +91,7 @@ public final class MovieDetailDataModel {
         return mMovieGenres;
     }
 
-    public List<String> getAllMoviePosters() {
+    public String getAllMoviePosters() {
         return mMovieAllPosters;
     }
 
@@ -129,6 +131,10 @@ public final class MovieDetailDataModel {
         return mMovieFavorite;
     }
 
+    public String getYoutubeKey() {
+        return mYoutubeKey;
+    }
+
     public List<PersonCreditDataModel> getMovieCast() {
         return mMovieCast;
     }
@@ -147,7 +153,7 @@ public final class MovieDetailDataModel {
         private String tagLine;
         private String releaseDate;
         private List<String> genres;
-        private List<String> allPosters;
+        private String allPosters;
         private String info;
         private String description;
         private String budget;
@@ -155,6 +161,7 @@ public final class MovieDetailDataModel {
         private String rating;
         private String tmdbRating;
         private String votesCount;
+        private String youtubeKey;
         private boolean watchlist;
         private boolean favorite;
         private List<PersonCreditDataModel> cast;
@@ -203,7 +210,7 @@ public final class MovieDetailDataModel {
             return this;
         }
 
-        public Builder setAllPosters(final List<String> allPosters) {
+        public Builder setAllPosters(final String allPosters) {
             this.allPosters = allPosters;
             return this;
         }
@@ -260,6 +267,11 @@ public final class MovieDetailDataModel {
 
         public Builder setCrew(final List<PersonCreditDataModel> crew) {
             this.crew = crew;
+            return this;
+        }
+
+        public Builder setYoutubeKey(final String youtubeKey) {
+            this.youtubeKey = youtubeKey;
             return this;
         }
 
