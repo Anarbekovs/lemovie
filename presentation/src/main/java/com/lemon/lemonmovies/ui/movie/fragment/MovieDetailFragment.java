@@ -308,6 +308,9 @@ public final class MovieDetailFragment extends BaseFragment implements MovieDeta
     @Override
     public void setWatchlistStatus(final boolean isWatchlist) {
         this.mWatchlist = isWatchlist;
+        if (isWatchlist)
+            mMovie.setMovieWatchlist(true);
+        else mMovie.setMovieWatchlist(false);
         if (mMovieWatchlistBtn != null) {
             mMovieWatchlistBtn.setImageResource(isWatchlist ? R.drawable.ic_watchlist_checked_24dp
                     : R.drawable.ic_watchlist_unchecked_24dp);
@@ -317,6 +320,9 @@ public final class MovieDetailFragment extends BaseFragment implements MovieDeta
     @Override
     public void setFavoriteStatus(final boolean isFavorite) {
         this.mFavorite = isFavorite;
+        if (isFavorite)
+            mMovie.setMovieFavorite(true);
+        else mMovie.setMovieFavorite(false);
         if (mMovieFavoriteBtn != null) {
             mMovieFavoriteBtn.setImageResource(isFavorite ? R.drawable.ic_favorite_checked_24dp
                     : R.drawable.ic_favorite_unchecked_24dp);
@@ -341,25 +347,27 @@ public final class MovieDetailFragment extends BaseFragment implements MovieDeta
     }
 
     private void performWatchlistClick() {
-        if (!mWatchlist && mMovieId != 0)
+        if (!mWatchlist && mMovieId != 0) {
             mPresenter.addToWatchlist(mMovieId);
-        else if (!mWatchlist)
-            mPresenter.addToWatchlist();
-        else if (mMovieId != 0)
+        } else if (!mWatchlist) {
+            mPresenter.addToWatchlist(mMovie.getMovieId());
+        } else if (mMovieId != 0) {
             mPresenter.deleteFromWatchlist(mMovieId);
-        else
-            mPresenter.deleteFromWatchlist();
+        } else {
+            mPresenter.deleteFromWatchlist(mMovie.getMovieId());
+        }
     }
 
     private void performFavoriteClick() {
-        if (!mFavorite && mMovieId != 0)
+        if (!mFavorite && mMovieId != 0) {
             mPresenter.addToFavorites(mMovieId);
-        else if (!mFavorite)
-            mPresenter.addToFavorites();
-        else if (mMovieId != 0)
+        } else if (!mFavorite) {
+            mPresenter.addToFavorites(mMovie.getMovieId());
+        } else if (mMovieId != 0) {
             mPresenter.deleteFromFavorites(mMovieId);
-        else
-            mPresenter.deleteFromFavorites();
+        } else {
+            mPresenter.deleteFromFavorites(mMovie.getMovieId());
+        }
     }
 
     private void performRatingClick() {
@@ -386,7 +394,6 @@ public final class MovieDetailFragment extends BaseFragment implements MovieDeta
             }
         }
     }
-
 
     @Override
     public void onDestroy() {

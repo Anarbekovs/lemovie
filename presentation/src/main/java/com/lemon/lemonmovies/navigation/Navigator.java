@@ -160,7 +160,7 @@ public final class Navigator {
      * @param context - a calling component context
      */
     public void navigateToMarketAppRating(@NonNull final Context context) {
-        final String appPackageName = "com.kyrgyz.radio";
+        final String appPackageName = "";
         try {
             context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
         } catch (android.content.ActivityNotFoundException anfe) {

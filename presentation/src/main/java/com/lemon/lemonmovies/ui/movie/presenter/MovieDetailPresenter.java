@@ -25,7 +25,6 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
     private final SetMovieRatingUseCase mSetMovieRatingUseCase;
     private final AddMovieUseCase mAddMovieUseCase;
     private final DeleteMovieUseCase mDeleteMovieUseCase;
-    private int randomMovieId;
 
     @Inject
     public MovieDetailPresenter(final GetMovieDetailsUseCase getMovieDetailsUseCase,
@@ -50,7 +49,6 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(MovieDetailDataModelMapper::transform)
-                .doOnNext(movieDetailDataModel -> randomMovieId = movieDetailDataModel.getMovieId())
                 .subscribe(this::setMovieDetails, Throwable::getLocalizedMessage));
     }
 
@@ -63,18 +61,8 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
         mView.setWatchlistStatus(true);
     }
 
-    public void addToWatchlist() {
-        addDisposable(mAddMovieUseCase.execute(randomMovieId, MovieType.WATCHLIST));
-        mView.setWatchlistStatus(true);
-    }
-
     public void deleteFromWatchlist(final int movieId) {
         addDisposable(mDeleteMovieUseCase.execute(movieId, MovieType.WATCHLIST));
-        mView.setWatchlistStatus(false);
-    }
-
-    public void deleteFromWatchlist() {
-        addDisposable(mDeleteMovieUseCase.execute(randomMovieId, MovieType.WATCHLIST));
         mView.setWatchlistStatus(false);
     }
 
@@ -83,18 +71,8 @@ public final class MovieDetailPresenter extends BasePresenter<MovieDetailView> {
         mView.setFavoriteStatus(true);
     }
 
-    public void addToFavorites() {
-        addDisposable(mAddMovieUseCase.execute(randomMovieId, MovieType.FAVORITE));
-        mView.setFavoriteStatus(true);
-    }
-
     public void deleteFromFavorites(final int movieId) {
         addDisposable(mDeleteMovieUseCase.execute(movieId, MovieType.FAVORITE));
-        mView.setFavoriteStatus(false);
-    }
-
-    public void deleteFromFavorites() {
-        addDisposable(mDeleteMovieUseCase.execute(randomMovieId, MovieType.FAVORITE));
         mView.setFavoriteStatus(false);
     }
 

@@ -26,8 +26,8 @@ public final class MovieDetailDataModel {
     private final String mMovieTmdbRating;
     private final String mMovieVotesCount;
     private final String mYoutubeKey;
-    private final boolean mMovieWatchlist;
-    private final boolean mMovieFavorite;
+    private boolean mMovieWatchlist;
+    private boolean mMovieFavorite;
     private final List<PersonCreditDataModel> mMovieCast;
     private final List<PersonCreditDataModel> mMovieCrew;
 
@@ -142,6 +142,15 @@ public final class MovieDetailDataModel {
     public List<PersonCreditDataModel> getMovieCrew() {
         return mMovieCrew;
     }
+
+    public void setMovieWatchlist(boolean movieWatchlist) {
+        mMovieWatchlist = movieWatchlist;
+    }
+
+    public void setMovieFavorite(boolean movieFavorite) {
+        mMovieFavorite = movieFavorite;
+    }
+
 
     public static final class Builder {
 
