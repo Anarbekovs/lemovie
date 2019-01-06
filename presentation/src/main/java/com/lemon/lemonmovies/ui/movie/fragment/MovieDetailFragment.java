@@ -151,12 +151,12 @@ public final class MovieDetailFragment extends BaseFragment implements MovieDeta
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (mMovie != null) {
-            setMovieDetails(mMovie);
-        }
         mPresenter.attachView(this);
         initAdapters();
         prepareRecyclerViews();
+        if (mMovie != null) {
+            setMovieDetails(mMovie);
+        }
 
     }
 

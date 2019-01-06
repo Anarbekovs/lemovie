@@ -132,15 +132,15 @@ public final class TvShowDetailFragment extends BaseFragment implements TvShowDe
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.attachView(this);
-
         initAdapters();
         prepareRecyclerViews();
+        getTvShowDetails();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-            getTvShowDetails();
+
     }
 
     private void initOnPersonClickListener(final Context context) {
